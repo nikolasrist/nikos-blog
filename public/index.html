@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<link rel="alternate" type="application/rss+xml" href="/rss.xml">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Welcome to my Blog. Here I write about dev topics.">
+		<title>Nehranis - dev blog</title>
+		<link rel="stylesheet" href="/css/style.css"/>
+		
+		<script type="text/javascript">
+			navigator
+				.serviceWorker
+				.getRegistrations()
+				.then((registrations) => {
+					if (!registrations && registrations.length === 0) {
+						return;
+					}
+					for (let registration of registrations) {
+						registration.unregister()
+					}
+				})
+		</script>
+	</head>
+	<body class="">
+		
+			<div class="sidebar">
+    <header class="sidebar__author">
+        <img src="/assets/img/photo.jpg" class="sidebar__author-photo" alt="Picture of Nikolas Rist." width="75" height="75">
+        <span class="sidebar__author-title">
+            <a aria-current="page" class="black-link sidebar__author-title-link black-link" href="/">Nikolas Rist</a>
+        </span>
+        <span class="sidebar__author-subtitle">Full-Stack Developer</span>
+    </header>
+    <nav class="menu">
+    <ul class="menu__list">
+        <li class="menu__list-item">
+            <a href="/" class="black-link menu__list-item-link menu__list-item-link--active" aria-current="page">Posts</a>
+        </li>
+        <li class="menu__list-item">
+            <a href="/about" class="black-link menu__list-item-link " >About me</a>
+        </li>
+    </ul>
+</nav>
+    <ul class="links__list">
+    <li class="links__list-item">
+        <a href="https://github.com/nikolasrist" target="_blank" rel="noopener noreferrer">
+            <i class="icon-github icon--larger" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="https://twitter.com/nehranis" target="_blank" rel="noopener noreferrer">
+            <i class="icon-twitter" aria-hidden="true"></i>
+            <span class="sr-only">twitter</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="mailto:nehranis@gmail.com">
+            <i class="icon-mail" aria-hidden="true"></i>
+            <span class="sr-only">Send me an email</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="https://www.linkedin.com/in/nikolas-rist-720796127">
+            <i class="icon-linkedin" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="/rss.xml">
+            <i class="icon-rss" aria-hidden="true"></i>
+            <span class="sr-only">RSS feed</span></a>
+    </li>
+</ul>
+</div>
+		
+		<main class="content">
+			
+    <h1>Posts</h1>
+    <ul class="list-unstyled">
+        
+            <li class="post-item">
+    <a class="post-item__link" href="/posts/ng-micro-frontends/">
+        <time class="datetime color-grey" datetime="2022-06-22">
+            June 2022
+        </time>
+
+        <h2>Web Component-based Micro Frontends with Angular: from zero to production</h2>
+
+        <p class="post-item__description">A complete video guide on how to ship micro frontends using Angular elements based on a solution we've implemented at LeanIX.</p>
+    </a>
+</li>
+        
+            <li class="post-item">
+    <a class="post-item__link" href="/posts/web-accessibility-introduction/">
+        <time class="datetime color-grey" datetime="2022-01-31">
+            January 2022
+        </time>
+
+        <h2>Building accessible web applications: What, Why, Who and How</h2>
+
+        <p class="post-item__description">An attempt to raise awareness of a topic that should be important to anyone building user interfaces for humans.</p>
+    </a>
+</li>
+        
+            <li class="post-item">
+    <a class="post-item__link" href="/posts/smarter-nx-affected-checks/">
+        <time class="datetime color-grey" datetime="2021-12-06">
+            December 2021
+        </time>
+
+        <h2>One way to speed up CI checks in your nx monorepo</h2>
+
+        <p class="post-item__description">By combining the "nx affected" and "nx dep-graph" commands we were able to reduce the number of projects to check in our continuous integration runs. The code is available as a reusable GitHub Action for your nx monorepo.</p>
+    </a>
+</li>
+        
+            <li class="post-item">
+    <a class="post-item__link" href="/posts/two-week-software-development-internship-guide/">
+        <time class="datetime color-grey" datetime="2020-01-17">
+            January 2020
+        </time>
+
+        <h2>How to structure a two week internship for software development</h2>
+
+        <p class="post-item__description">I came up with this plan of a two week software development internship for 16 year old school student Sidney, who I volunteered to teach the ways of a software developer. Since a lot of coworkers and parents asked me how I structured it, I summarize it here.</p>
+    </a>
+</li>
+        
+            <li class="post-item">
+    <a class="post-item__link" href="/posts/first-month-at-leanix/">
+        <time class="datetime color-grey" datetime="2019-02-12">
+            February 2019
+        </time>
+
+        <h2>My first month as Software Engineer at LeanIX</h2>
+
+        <p class="post-item__description">Finding the next destination on my path as software developer was not an easy task, as there are many interesting projects and companies on the hunt for job candidates. I feel like I made the right choice.</p>
+    </a>
+</li>
+        
+            <li class="post-item">
+    <a class="post-item__link" href="/posts/ihk-projektpraesentation-fachinformatiker-anwendungsentwicklung/">
+        <time class="datetime color-grey" datetime="2018-07-05">
+            July 2018
+        </time>
+
+        <h2>Für zukünftige Azubis: meine Projektpräsentation als Fachinformatiker bei der IHK Abschlussprüfung</h2>
+
+        <p class="post-item__description">Am 3. Juli 2018 habe ich meine Ausbildung zum Fachinformatiker abgeschlossen und damit nun zukünftige Azubis auch etwas von meiner erfolgreichen Präsentation haben werden, stelle ich hier meine Slides und mein Skript zur Verfügung.</p>
+    </a>
+</li>
+        
+            <li class="post-item">
+    <a class="post-item__link" href="/posts/enterjs-darmstadt-2018-eine-zusammenfassung/">
+        <time class="datetime color-grey" datetime="2018-06-26">
+            June 2018
+        </time>
+
+        <h2>enterJS Darmstadt 2018 - Eine Zusammenfassung ausgewählter Talks</h2>
+
+        <p class="post-item__description">Dieses Jahr war ich zum zweiten Mal in Folge auf der enterJS-Konferenz in Darmstadt und fasse in diesem Beitrag einige der Talks zusammen, die ich besucht habe.</p>
+    </a>
+</li>
+        
+            <li class="post-item">
+    <a class="post-item__link" href="/posts/girls-day-fuer-software/">
+        <time class="datetime color-grey" datetime="2018-04-30">
+            April 2018
+        </time>
+
+        <h2>Tipps für den Girls&#39;Day in einer Software-Firma</h2>
+
+        <p class="post-item__description">Hier stelle ich einen mehrfach erprobten Plan für die Inhalte eines Girls'Day in einer Software-Firma vor.</p>
+    </a>
+</li>
+        
+            <li class="post-item">
+    <a class="post-item__link" href="/posts/erasmusplus-social-inclusion-dinner-in-the-dark/">
+        <time class="datetime color-grey" datetime="2017-12-04">
+            December 2017
+        </time>
+
+        <h2>Erasmus+ Social Inclusion Days: Dinner in the Dark</h2>
+
+        <p class="post-item__description">Seit diesem Jahr engagiere ich mich beim Erasmus Student Network (ESN) Bonn. Im Rahmen der Social Inclusion Days, welche vom 27. November bis 10. Dezember 2017 stattfinden, habe ich zusammen mit ESN Bonn ein „Dinner in the Dark“ veranstaltet.</p>
+    </a>
+</li>
+        
+            <li class="post-item">
+    <a class="post-item__link" href="/posts/running-dinner/">
+        <time class="datetime color-grey" datetime="2017-10-30">
+            October 2017
+        </time>
+
+        <h2>Reste retten nach Feierabend mit rudirockt.de</h2>
+
+        <p class="post-item__description">Es gibt viele Gründe, warum ich die webfactory so gerne meinen Arbeitgeber nenne. Einer davon ist unser Büro und die Tatsache, dass die Räumlichkeiten außerhalb der Arbeitszeiten von jedem Mitarbeiter auch privat genutzt werden können.</p>
+    </a>
+</li>
+        
+    </ul>
+
+		</main>
+	</body>
+</html>

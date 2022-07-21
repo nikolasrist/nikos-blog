@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Nikolas Rist</title>
+  <subtitle></subtitle>
+  <link href="https://www.dev.nehranis.de/rss.xml" rel="self"/>
+  <link href="https://www.dev.nehranis.de/"/>
+  <updated>2022-06-22T00:00:00Z</updated>
+  <id>https://www.dev.nehranis.de//</id>
+  <author>
+    <name>Nikolas Rist</name>
+    <email>nehranis@gmail.com</email>
+  </author><entry>
+          <title>Web Component-based Micro Frontends with Angular: from zero to production</title>
+          <link href="https://www.dev.nehranis.de/posts/ng-micro-frontends/"/>
+          <updated>2022-06-22T00:00:00Z</updated>
+          <id>https://www.dev.nehranis.de/posts/ng-micro-frontends/</id>
+          <content type="html">
+          &lt;p&gt;In 1 hour and 42 minutes you can learn how to implement the same web component-based micro frontend architecture that we&#39;ve been using to ship micro frontends in production for nearly two years at LeanIX:&lt;/p&gt;
+&lt;p&gt;&lt;lite-youtube videoid=&quot;ee17YczpCpU&quot; videotitle=&quot;Web Component-based Micro Frontends with Angular&quot;&gt;&lt;/lite-youtube&gt;&lt;/p&gt;
+&lt;p&gt;This is the largest video project on a technical topic that I&#39;ve produced so far and it was a lot of fun.&lt;/p&gt;
+&lt;p&gt;Together with &lt;a href=&quot;https://traveling-coderman.net/&quot; target=&quot;_blank&quot;&gt;Fabian Böller&lt;/a&gt;, the main author of the implementation for micro frontends using web components with Angular elements at LeanIX, we share:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Migrating a sub-route of an Angular application from a lazy loaded route to a micro frontend in a web component.&lt;/li&gt;
+&lt;li&gt;Deploying and integrating the shell application and the micro frontend on Netlify.&lt;/li&gt;
+&lt;li&gt;Building a new top level route inside the micro frontend.&lt;/li&gt;
+&lt;li&gt;And many more things to know about shipping micro frontends with Angular in production.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;By adopting micro frontends at LeanIX, we enabled a very high level of autonomy to our cross-functional teams, as they can ship their frontend and backend independently from those of other teams. No more blocked release pipelines due to failing tests in the frontend monolith.&lt;br /&gt;
+This is also known as vertical team ownership. You can read more about it on &lt;a href=&quot;https://micro-frontends.org/&quot; target=&quot;_blank&quot;&gt;micro-frontends.org&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;During the recording we made commits for each major step of the micro frontend migration. You can find the source code and the exact commits from the Video on GitHub: &lt;a href=&quot;https://github.com/fboeller/microfrontends-with-angular/commits/recording&quot;&gt;microfrontends-with-angular project on GitHub&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Thanks to &lt;a href=&quot;https://twitter.com/ManfredSteyer&quot; target=&quot;_blank&quot;&gt;Manfred Steyer&lt;/a&gt; for building and mainting the &lt;a href=&quot;https://github.com/manfredsteyer/ngx-build-plus&quot; target=&quot;_blank&quot;&gt;ngx-build-plus&lt;/a&gt; npm package.&lt;br /&gt;
+It makes it easy to combine the build output of an Angular application into a single JavaScript file, which is essential for including them as web-components.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9CWeb%20Component-based%20Micro%20Frontends%20with%20Angular:%20from%20zero%20to%20production%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
+          </content>
+        </entry><entry>
+          <title>Building accessible web applications: What, Why, Who and How</title>
+          <link href="https://www.dev.nehranis.de/posts/web-accessibility-introduction/"/>
+          <updated>2022-01-31T00:00:00Z</updated>
+          <id>https://www.dev.nehranis.de/posts/web-accessibility-introduction/</id>
+          <content type="html">
+          &lt;h2 id=&quot;preface&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#preface&quot;&gt;Preface&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;I originally published this blog post on the &lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://engineering.leanix.net/blog/web-accessibility/&quot;&gt;LeanIX Engineering Blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I extracted this article from a talk I&#39;m giving to LeanIX employees (and at the &lt;a href=&quot;https://www.dev.nehranis.de/talks/bn-code-webaccessibility/&quot;&gt;Bonn Code Meetup&lt;/a&gt;; includes recording). Big thanks to &lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://twitter.com/polarbirke&quot;&gt;@polarbirke&lt;/a&gt; for sparking my interest in web accessibility several years ago and also giving me tips on my talk.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Disclaimer:&lt;/strong&gt; I&#39;m by no means an accessibility expert. I would rather call myself an accessibility nerd. As I prepared my accessibility talk at LeanIX I kept falling deeper into the accessibility rabbit hole and there are still so many things I don&#39;t know.&lt;/p&gt;
+&lt;p&gt;In this post I&#39;m trying to answer the &amp;quot;What, Why, Who, and How&amp;quot; of web accessibility and provide you with the tools to build more accessible web services.&lt;/p&gt;
+&lt;h2 id=&quot;what-is-web-accessibility&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#what-is-web-accessibility&quot;&gt;What is web accessibility?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Short and crisp:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Web accessibility is about enabling all humans to use web services, regardless of their physical or situational disability.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;or as Tim Berners-Lee said:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The power of the Web is in its universality.&lt;br /&gt;
+Access by everyone regardless of disability is an essential aspect.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Source: &lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://www.w3.org/standards/webdesign/accessibility&quot;&gt;W3C Accessibility&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;why-should-you-care&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#why-should-you-care&quot;&gt;Why should you care?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;First and foremost learning about and building accessible web services makes the web more open to everyone. Secondly, because those &amp;quot;everyone&amp;quot; also includes your paying customers.&lt;/p&gt;
+&lt;h3 id=&quot;the-people-aka-our-customers&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#the-people-aka-our-customers&quot;&gt;The people (aka our customers)&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;I used to think of web accessibility mattering only to people with permanent disabilities, but there are plenty of examples where anyone is going to miss accessibility support in web services due to temporary or situational disabilities such as a broken arm as well. Not being able to navigate all features of LeanIX using my left hand and a keyboard is very frustrating in this case.&lt;/p&gt;
+&lt;p&gt;This graphic from &lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://www.microsoft.com/design/inclusive/&quot;&gt;Microsoft Inclusive Design&lt;/a&gt; presents a small excerpt of people who rely on developers who are mindful of accessibility so that they can use their web services:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/microsoft-disability-categories.webp&quot; alt=&quot;Showcase by Microsoft Inclusive Design of different kinds of disabilities that put you in a position to rely on web accessibility&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;On the other hand there&#39;s ...&lt;/p&gt;
+&lt;h3 id=&quot;the-law&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#the-law&quot;&gt;The law&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Here&#39;s a list of the laws that I&#39;ve known the longest/found to be the most influential:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://www.gesetze-im-internet.de/bitv_2_0/BJNR184300011.html&quot;&gt;Barrierefreie-Informationstechnik-Verordnung - BITV 2.0&lt;/a&gt; public agencies need to conform with this&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://www.essentialaccessibility.com/compliance-overview/americans-with-disabilities-act-ada-compliance&quot;&gt;Americans with Disabilities Act&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32019L0882&quot;&gt;European Accessibility Act&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;http://www.gesetze-im-internet.de/bgg/BJNR146800002.html&quot;&gt;BGG - Gesetz zur Gleichstellung von Menschen mit Behinderungen&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Overview: &lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://www.w3.org/WAI/policies/&quot;&gt;Web Accessibility Laws and Policies | W3C&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;By the BITV 2.0 law, for example, any web services that are operated by a public agency in Germany need to be accessible by anyone regardless of their disability.&lt;/p&gt;
+&lt;p&gt;There&#39;ve also been several successful court cases in the US about websites of US service providers were not accessible to disabled people, which violates the ADA linked above.&lt;/p&gt;
+&lt;h2 id=&quot;who-meet-the-wcag-by-the-w3-c&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#who-meet-the-wcag-by-the-w3-c&quot;&gt;Who: Meet the WCAG by the W3C&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The World Wide Web Consortium (W3C) is the main international standards organization for the World Wide Web founded in 1994 and led by Tim Berners-Lee.&lt;/p&gt;
+&lt;p&gt;They publish and maintain the Web Content Accessibility Guidelines as part of the Web Accessibility Initiative. If you want to know about web accessibility, I think they should be your first destination online. You can start with their &lt;a href=&quot;https://www.w3.org/WAI/fundamentals/accessibility-intro/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer&quot;&gt;introduction to web accessibility&lt;/a&gt; page.&lt;/p&gt;
+&lt;h3 id=&quot;wcag-pour-principles&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#wcag-pour-principles&quot;&gt;WCAG POUR principles&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;The Web Content Accessibility Guidelines (WCAG) are categorized in the following four principles (&lt;a href=&quot;https://www.w3.org/WAI/WCAG21/Understanding/intro#understanding-the-four-principles-of-accessibility&quot; target=&quot;_blank&quot; rel=&quot;noreferrer&quot;&gt;source&lt;/a&gt;):&lt;/p&gt;
+&lt;p&gt;Web content must be...&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Perceivable&lt;/strong&gt; - Information and user interface components must be presentable to users in ways they can perceive.&lt;/p&gt;
+&lt;p&gt;This means that users must be able to perceive the information being presented, it can&#39;t be invisible to all of their senses.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Operable&lt;/strong&gt; - User interface components and navigation must be operable.&lt;/p&gt;
+&lt;p&gt;This means that users must be able to operate the interface. The interface cannot require interaction that a user cannot perform.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Understandable&lt;/strong&gt; - Information and the operation of the user interface must be understandable.&lt;/p&gt;
+&lt;p&gt;This means that users must be able to understand the information as well as the operation of the user interface. The content or operation cannot be beyond their understanding.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Robust&lt;/strong&gt; - Content must be robust enough that it can be interpreted reliably by a wide variety of user agents, including assistive technologies.&lt;/p&gt;
+&lt;p&gt;This means that users must be able to access the content as technologies advance. As technologies and user agents evolve, the content should remain accessible.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;disability-perspectives&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#disability-perspectives&quot;&gt;Disability perspectives&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Disability emerges where there is a mismatch between individual capacities and environmental demands&lt;a href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#disability-paper-footnote&quot; id=&quot;disability-paper-ref&quot; role=&quot;doc-noteref&quot; aria-label=&quot;Jump to footnote with source&quot;&gt;&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The non-profit organization WebAIM distinguishes the following four categories for permanent disability:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Visual&lt;/p&gt;
+&lt;p&gt;Blindness, low vision, color-blindness&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Auditory&lt;/p&gt;
+&lt;p&gt;Deafness and hard-of-hearing&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Motor&lt;/p&gt;
+&lt;p&gt;Inability to use a mouse, slow response time, limited fine motor control&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Cognitive&lt;/p&gt;
+&lt;p&gt;Learning disabilities, distractibility, inability to remember or focus on large amounts of information&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Source: &lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://webaim.org/intro/&quot;&gt;WebAIM: Introduction to Web Accessibility&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;However as I mentioned before there are many situations where anyone may become reliant on accessible web services, such as a broken arm or wrist or a visually impaired person who just misplaced their glasses.&lt;/p&gt;
+&lt;p&gt;This video by the W3C is a must-see for me as a non disabled person: &lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://www.youtube.com/watch?v=3f31oufqFSM&quot;&gt;Web Accessibility Perspectives - Compilation of 10 Topics/Videos&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Now that you&#39;ve read about the Web Content Accessibility guidelines and different kinds of disabilities, let&#39;s jump into how to use them to build more accessible web services.&lt;/p&gt;
+&lt;h2 id=&quot;how&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#how&quot;&gt;How?&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;If you&#39;re just starting with paying attention to accessibility in the user interfaces of your services/products, I would suggest starting with one simple rule to adhere to:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;If an action can be done with a mouse, it needs to be doable with a keyboard as well.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;A more comprehensive approach that conforms with most laws would be to strive for WCAG conformance level AA.&lt;/p&gt;
+&lt;p&gt;How do you know what level you&#39;re at? &lt;strong&gt;Checklists and Audits.&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;checklists&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#checklists&quot;&gt;Checklists&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Here&#39;s my personal &amp;quot;layman web accessibility checklist&amp;quot;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Every form input needs to have a label that can be associated with this input. Placeholders are no replacement for labels!&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Text should have a minimum contrast ratio of 4.5:1 with its background, strive for at least 7:1. The highest achievable contrast is 21:1 e.g. black on white.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Provide alternative text for images that convey information.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Order your heading tags consistently (e.g. don&#39;t follow a h2 with an h4 without an h3 in between).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For keyboard users, the element that currently holds the focus should always be identifiable as such.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Buttons that visibly only contain icons need to have an alternative text.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;And here you can find actual professional accessibility checklists:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.a11yproject.com/checklist/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer&quot;&gt;A11Y Project checklist&lt;/a&gt;: a well designed and easy to consume checklist&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.w3.org/WAI/WCAG21/quickref/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer&quot;&gt;WCAG Quickref&lt;/a&gt;: a complete list of all rules that allows to filter for different compliance levels relatively easy&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;audits&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#audits&quot;&gt;Audits&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;One important tool to bring attention to accessibility flaws in your services is to pay experts to audit them. I won&#39;t recommend any in this post, but there&#39;s several highly professional accessibility auditors who are passionate about what they do.&lt;/p&gt;
+&lt;h3 id=&quot;use-semantic-elements-aka-a-div-is-not-a-button&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#use-semantic-elements-aka-a-div-is-not-a-button&quot;&gt;Use semantic elements aka &amp;quot;A div is not a button&amp;quot;&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Using semantic elements is a way to get accessibility out of the box at a low cost.&lt;/p&gt;
+&lt;p&gt;A few examples:&lt;/p&gt;
+&lt;p&gt;If something is a list, make it a &amp;lt;ul&amp;gt; or &amp;lt;ol&amp;gt;.&lt;/p&gt;
+&lt;p&gt;If something is a button, make it a &amp;lt;button&amp;gt; (no &amp;lt;a&amp;gt;, &amp;lt;div&amp;gt;, &amp;lt;span&amp;gt; or whatever tag).&lt;/p&gt;
+&lt;p&gt;If something is a link, make it an &amp;lt;a&amp;gt; tag (no &lt;code&gt;window.href=some-url&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;The following HTML code compares the minimal required code to get a &lt;code&gt;div&lt;/code&gt; element to implement the ARIA &lt;code&gt;button&lt;/code&gt; role in an Angular component template next to the markup of the native &lt;code&gt;button&lt;/code&gt; element.&lt;/p&gt;
+&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;&amp;lt;!-- div button using angular template features ---&gt;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;div&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;tabindex&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;0&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;     &lt;span class=&quot;token attr-name&quot;&gt;(click)&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;onAction()&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;     &lt;span class=&quot;token attr-name&quot;&gt;(keydown.enter)&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;onAction()&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;     &lt;span class=&quot;token attr-name&quot;&gt;(keydown.space)&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;onAction()&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;     &lt;span class=&quot;token attr-name&quot;&gt;[style.cursor]&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&#39;&lt;/span&gt;pointer&lt;span class=&quot;token punctuation&quot;&gt;&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;     &lt;span class=&quot;token attr-name&quot;&gt;role&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;button&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;Click me&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;div&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;&lt;span class=&quot;token comment&quot;&gt;&amp;lt;!-- versus ---&gt;&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;&lt;span class=&quot;token comment&quot;&gt;&amp;lt;!-- native button ---&gt;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;button&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;(click)&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;onAction()&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;Click me&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;button&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Cool resources on this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.buttoncheatsheet.com/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer&quot;&gt;thebuttoncheatsheet.com&lt;/a&gt; by &lt;a href=&quot;https://twitter.com/mmatuzo&quot; target=&quot;_blank&quot; rel=&quot;noreferrer&quot;&gt;@mmatuzo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.scottohara.me/blog/2022/01/20/divisive.html&quot; target=&quot;_blank&quot; rel=&quot;noreferrer&quot;&gt;Div divisiveness&lt;/a&gt; by &lt;a href=&quot;https://twitter.com/scottohara&quot; target=&quot;_blank&quot; rel=&quot;noreferrer&quot;&gt;@scottohara&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;aria-what&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#aria-what&quot;&gt;ARIA what?&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Aria is especially -  but not exclusively - important for supporting screen readers.&lt;/p&gt;
+&lt;p&gt;It stands for &amp;quot;Accessible Rich Internet Applications suite of web standards&amp;quot;. The Mozilla Developer Network lists some &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA&quot; target=&quot;_blank&quot; rel=&quot;noreferrer&quot;&gt;great resources on learning more about ARIA&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;While you can put &lt;code&gt;tabindex=&amp;quot;0&amp;quot;&lt;/code&gt; and event listeners for &lt;code&gt;click&lt;/code&gt; and &lt;code&gt;enter&lt;/code&gt; events on a &amp;lt;span&amp;gt; element, this will not enable screen readers to treat this element like a button. To enable this you need to assign your &amp;lt;span&amp;gt; element the ARIA attribute called &lt;code&gt;role&lt;/code&gt; with the value &lt;code&gt;button&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Three things to keep in mind:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Semantic elements &amp;gt; ARIA attributes (&lt;code&gt;button&lt;/code&gt; &amp;gt; &lt;code&gt;role=&amp;quot;button&amp;quot;&lt;/code&gt;).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;No ARIA is better than bad ARIA.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;A role is a promise. If you give something an aria role, you should properly implement all input methods that are specified for it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;on-screen-readers&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#on-screen-readers&quot;&gt;On screen readers&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;A screen reader is a form of assistive technology that renders text and image content as speech or braille output. Since I&#39;m not visually impaired, I&#39;ve only ever used them for testing. I test with Apple VoiceOver since my developer machine uses Mac OS. You can enable it any time by pressing &lt;code&gt;cmd + f5&lt;/code&gt;. It&#39;s worth it to look into the &lt;a href=&quot;https://webaim.org/articles/voiceover/&quot; target=&quot;_blank&quot; rel=&quot;noreferrer&quot;&gt;controls of screen readers&lt;/a&gt; before enabling them.&lt;/p&gt;
+&lt;p&gt;I highly recommend watching this screen reader demonstration video that was recently uploaded on the TetraLogical YouTube channel: &lt;a href=&quot;https://www.youtube.com/watch?v=KuVKQQMtRRI&amp;list=PLTqm2yVMMUKVxQ6eYth4_vvbM3IcrSPlk&amp;index=1&quot; target=&quot;_blank&quot; rel=&quot;noreferrer&quot;&gt;Browsing with a desktop screen reader&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;One of the directors at TetraLogical is Léonie Watson and she gave a very good talk at the Front-Trends conference in 2015: &lt;a href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/youtube.com/watch?v=qdB8SRhqvFc&quot; id=&quot;watson-talk&quot; target=&quot;_blank&quot; rel=&quot;noreferrer&quot;&gt;ARIA, Accessibility APIs and coding like you give a damn!&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;improve-how-screen-readers-read-your-content&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#improve-how-screen-readers-read-your-content&quot;&gt;Improve how screen readers read your content&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Describe interactable elements that do not contain any text that explains what it&#39;s doing using the &lt;code&gt;aria-label&lt;/code&gt; attribute. Also from my research, I&#39;m fairly certain that for targeting screen readers, &lt;code&gt;aria-label&lt;/code&gt; is more widely supported than &lt;code&gt;title&lt;/code&gt; attributes.&lt;/p&gt;
+&lt;p&gt;The following HTML code shows examples for using the &lt;code&gt;aria-label&lt;/code&gt; and &lt;code&gt;aria-hidden&lt;/code&gt; attributes including the text that Apple VoiceOver announces when selecting them.&lt;/p&gt;
+&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;&amp;lt;!-- Reads &quot;button times&quot; --&gt;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;button&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token entity named-entity&quot; title=&quot;&amp;times;&quot;&gt;&amp;amp;times;&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;button&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;&lt;span class=&quot;token comment&quot;&gt;&amp;lt;!-- Reads &quot;button close&quot; --&gt;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;button&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;aria-label&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;close&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token entity named-entity&quot; title=&quot;&amp;times;&quot;&gt;&amp;amp;times;&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;button&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;&lt;span class=&quot;token comment&quot;&gt;&amp;lt;!-- Reads &quot;button identical to menu&quot; --&gt;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;button&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;≡ menu&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;button&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;&lt;span class=&quot;token comment&quot;&gt;&amp;lt;!-- Reads &quot;button menu&quot; --&gt;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;button&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;span&lt;/span&gt; &lt;span class=&quot;token attr-name&quot;&gt;aria-hidden&lt;/span&gt;&lt;span class=&quot;token attr-value&quot;&gt;&lt;span class=&quot;token punctuation attr-equals&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;true&lt;span class=&quot;token punctuation&quot;&gt;&quot;&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;≡&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;span&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt; menu&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;button&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To learn more about the &lt;code&gt;aria-label&lt;/code&gt; attribute I recommend reading &lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://dev.opera.com/articles/ux-accessibility-aria-label/&quot;&gt;this article on the Opera engineering blog&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;testing-tools&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#testing-tools&quot;&gt;Testing tools&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;When building accessible web applications, you need to be able to test that your efforts are achieving the desired results.&lt;/p&gt;
+&lt;p&gt;These are the tools I use for this:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;computer keyboard&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;browser plugins&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd&quot;&gt;axe DevTools&lt;/a&gt; (Free version is already very good, Pro license costs 40$ a month per user)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://accessibilityinsights.io/docs/en/web/overview/&quot;&gt;Accessibility Insights for Web&lt;/a&gt; by Microsoft&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Apple VoiceOver&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Here&#39;s a comprehensive list of testing software by the W3C: &lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://www.w3.org/WAI/ER/tools/&quot;&gt;Web Accessibility Evaluation Tools List&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I also recommend taking the time to watch this &lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; title=&quot;Quick accessibility tests&quot; href=&quot;https://www.youtube.com/playlist?list=PLTqm2yVMMUKWTr9XWdW5hJ9tk512Ow0SE&quot;&gt;great TetraLogical YouTube playlist&lt;/a&gt; where they demonstrate common accessibility test cases.&lt;/p&gt;
+&lt;h2 id=&quot;summary&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#summary&quot;&gt;Summary&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The accessibility rabbit hole goes deep and there&#39;s so much information on the web about it that takes a lot of time to consume. I hope that with this article I reduced the &amp;quot;fear&amp;quot; of this rabbit hole and maybe even sparked some interest.&lt;/p&gt;
+&lt;p&gt;And while I know that this might be much to ask next to keeping up with the latest JavaScript frameworks, if there are just three things you&#39;ll take away from this article, let it be these:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;web accessibility is cool and helps to make the web more open to anyone&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;user interfaces should be designed and built in a way where any user interaction that can be done with a mouse can also be done with a keyboard&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;using semantic HTML elements result in less code and better accessibility out of the box&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;To conclude I&#39;d like to quote a line from Léonie Watson&#39;s talk I &lt;a href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#watson-talk&quot;&gt;linked above&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Perfect is the enemy of good.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Don&#39;t strive for perfection when building accessible web services. Every little piece can make a difference to your users.&lt;/p&gt;
+&lt;h2 id=&quot;resources&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#resources&quot;&gt;Resources&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.sciencedirect.com/science/article/pii/S1875067215000863#sect0030&quot; id=&quot;disability-paper-footnote&quot; target=&quot;_blank&quot; rel=&quot;noreferrer&quot;&gt;(Dis)ability and the experience of accessibility in the urban environment&lt;/a&gt; &lt;a role=&quot;doc-backlink&quot; href=&quot;https://www.dev.nehranis.de/posts/web-accessibility-introduction/#disability-paper-ref&quot; aria-label=&quot;Jump to text&quot;&gt;↩&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;I&#39;ve done a lot of reading to compose this article. In order to not take over your whole viewport with a wall of links, I&#39;m including them in a disclosure widget.&lt;/p&gt;
+&lt;details&gt;
+&lt;summary&gt;Click to show more links to resources regarding accessibility&lt;/summary&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://developers.google.com/web/fundamentals/accessibility&quot;&gt;Accessibility Web Fundamentals Google Developers&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.w3.org/WAI/fundamentals/accessibility-intro/&quot;&gt;Introduction to Web Accessibility | Web Accessibility Initiative (WAI) | W3C&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.w3.org/TR/WCAG21/&quot;&gt;Web Content Accessibility Guidelines (WCAG) 2.1&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.microsoft.com/design/inclusive/&quot;&gt;Microsoft Inclusive Design&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://webaim.org/&quot;&gt;WebAIM&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.a11yproject.com/&quot;&gt;The A11Y Project&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/ericwbailey/573045f05b7492f62b32254cc7b07f4d&quot;&gt;Accessibility at Scale resources - A talk by Eric Bailey&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://inclusivedesignprinciples.org/&quot;&gt;Inclusive Design Principles&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.uxpin.com/studio/blog/web-accessibility-guide/&quot;&gt;Web Accessibility Guide for 2020 | UXPin&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.w3.org/WAI/tips/designing/&quot;&gt;Designing for Web Accessibility – Tips for Getting Started | Web Accessibility Initiative (WAI) | W3C&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://frontend.turing.edu/lessons/module-2/intro-to-accessibility.html&quot;&gt;Intro to Accessibility - Front-End Engineering Curriculum - Turing School of Software and Design&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://frontend.turing.edu/lessons/module-3/accessibility-deep-dive.html&quot;&gt;Accessibility Deep Dive - Front-End Engineering Curriculum - Turing School of Software and Design&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p class=&quot;mt-300 mb-300&quot;&gt;&lt;strong&gt;For testing Apple VoiceOver support:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://webaim.org/articles/voiceover/&quot;&gt;WebAIM: Using VoiceOver to Evaluate Web Accessibility&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://bbc.github.io/accessibility-news-and-you/accessibility-and-testing-with-voiceover-os.html&quot;&gt;Accessibility and Testing with VoiceOver OS (Mac)&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p class=&quot;mt-300 mb-300&quot;&gt;&lt;strong&gt;Good resources on ARIA&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.w3.org/TR/wai-aria-practices/&quot;&gt;WAI-ARIA Authoring Practices 1.2&lt;/a&gt; this page includes guides on how to properly implement a long list of UI patterns according to ARIA.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://webaim.org/techniques/aria/&quot;&gt;WebAIM: Introduction to ARIA - Accessible Rich Internet Applications&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA&quot;&gt;ARIA - Accessibility | MDN&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/details&gt;&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9CBuilding%20accessible%20web%20applications:%20What,%20Why,%20Who%20and%20How%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
+          </content>
+        </entry><entry>
+          <title>One way to speed up CI checks in your nx monorepo</title>
+          <link href="https://www.dev.nehranis.de/posts/smarter-nx-affected-checks/"/>
+          <updated>2021-12-06T00:00:00Z</updated>
+          <id>https://www.dev.nehranis.de/posts/smarter-nx-affected-checks/</id>
+          <content type="html">
+          &lt;p&gt;I originally published this blog post with my colleague Patrick Surrey on the &lt;a target=&quot;_blank&quot; rel=&quot;noreferrer&quot; href=&quot;https://engineering.leanix.net/blog/smarter-nx-affected-checks/&quot;&gt;LeanIX Engineering Blog&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Each frontend in our nx monorepo has its own workflow for running CI checks and deployment. The default &lt;code&gt;nx affected&lt;/code&gt; behaviour does not enable us to only get the list of projects that are affected and used by a specific application.&lt;/p&gt;
+&lt;p&gt;So we wrote a GitHub Action that does just this: &lt;a href=&quot;https://github.com/leanix/nx-affected-depenencies-action&quot;&gt;leanix/nx-affected-dependencies-action&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/leanix/nx-affected-depenencies-action&quot;&gt;Go to the action repository&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/marketplace/actions/nx-affected-depencencies-action&quot;&gt;Go to the action on the GitHub Marketplace&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Our main motivation for this action was to speed up the releases of our frontend applications and to save time and money on continuous integration checks.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The solution:&lt;/strong&gt; By combining the &lt;a href=&quot;https://nx.dev/l/a/cli/affected&quot;&gt;nx affected&lt;/a&gt; and &lt;a href=&quot;https://nx.dev/l/a/cli/dep-graph&quot;&gt;nx dep-graph --focus=theNameOfTheAppToDeploy&lt;/a&gt; commands we can create an intersection of these two lists to only get the affected projects that are actually a dependency of &lt;code&gt;theNameOfTheAppToDeploy&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dev.nehranis.de/posts/smarter-nx-affected-checks/nx-affected-comparison.png&quot; alt=&quot;Different lists of projects produced by three individual nx commands&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;how-to-use-it&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/smarter-nx-affected-checks/#how-to-use-it&quot;&gt;How to use it&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;This is just one way to use the &lt;code&gt;leanix/nx-affected-dependencies-action&lt;/code&gt; in your workflows. It resembles the use case of merging a feature branch into your &lt;code&gt;main&lt;/code&gt; branch and comparing the changes of the latest commit on &lt;code&gt;main&lt;/code&gt; (&lt;code class=&quot;language-text&quot; style=&quot;white-space: nowrap;&quot;&gt;${{ github.sha }}~1&lt;/code&gt;) with the merge commit of your feature branch &lt;code class=&quot;language-text&quot; style=&quot;white-space: nowrap;&quot;&gt;(${{ github.sha }}&lt;/code&gt;). &lt;br /&gt;For a more detailed overview, including a &lt;code&gt;gitflow&lt;/code&gt; parameter, please see the project &lt;a href=&quot;https://github.com/leanix/nx-affected-depenencies-action/blob/main/README.md&quot;&gt;README&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Evaluate affected&lt;br /&gt;  &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; leanix/nx&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;affected&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;dependencies&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;action@v0.2.1&lt;br /&gt;  &lt;span class=&quot;token key atrule&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; affected&lt;br /&gt;  &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token key atrule&quot;&gt;project&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; pathfinder&lt;br /&gt;    &lt;span class=&quot;token key atrule&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $~1&lt;br /&gt;    &lt;span class=&quot;token key atrule&quot;&gt;head&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;br /&gt;&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Run Unit Tests (Affected)&lt;br /&gt;  &lt;span class=&quot;token key atrule&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; steps.affected.outputs.isAffected == &#39;true&#39;&lt;br /&gt;  &lt;span class=&quot;token key atrule&quot;&gt;env&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token key atrule&quot;&gt;affectedDeps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;br /&gt;  &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; npx nx run&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;many &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;target=test &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;projects=$affectedDeps &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;runner ci&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The &lt;a href=&quot;https://nx.dev/l/a/cli/run-many&quot;&gt;nx run-many&lt;/a&gt; command will run the given &lt;code&gt;target&lt;/code&gt; task on the provided &lt;code&gt;projects&lt;/code&gt;, which in this case come from the &lt;code&gt;affectedDeps&lt;/code&gt; output of the &lt;code&gt;leanix/nx-affected-dependencies-action&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;background&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/smarter-nx-affected-checks/#background&quot;&gt;Background&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;As of the time of writing we are shipping 13 individual angular applications in our nx monorepo. Our CI tool of choice is GitHub Actions.&lt;br /&gt;
+All our microfrontends will be deployed after a feature branch is merged and CI checks are green.&lt;/p&gt;
+&lt;p&gt;The most time consuming application in our monorepo is our &amp;quot;shell application&amp;quot;. Among &amp;quot;normal shell application things&amp;quot; like the navigation bar it has the largest chunk of code of any application, since it was there long before we started adopting microfrontends.&lt;/p&gt;
+&lt;h3 id=&quot;how-we-used-to-do-it&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/smarter-nx-affected-checks/#how-we-used-to-do-it&quot;&gt;How we used to do it&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;This is a simplified version of the &lt;code&gt;Test&lt;/code&gt; step in the workflow of a microfrontend when a feature branch is merged:&lt;/p&gt;
+&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Test&lt;br /&gt;  &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; npx nx affected&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;test &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;base=$~1 &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;head=$ &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;runner ci&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As you can see we used the &lt;a href=&quot;https://nx.dev/l/a/cli/affected&quot;&gt;nx affected&lt;/a&gt; command to lint and test the projects affected by the merged changes before deploying the new version of a frontend. However this resulted in each frontend application workflow unnecessarily linting and testing projects that are not used by them, but other applications.&lt;/p&gt;
+&lt;p&gt;Take a change in our shared component library for example: almost all of our applications will be affected by this. Now our small &lt;code&gt;todos&lt;/code&gt; microfrontend will redundantly lint and test the large &amp;quot;shell application&amp;quot; and code of other microfrontends, as these are also inside the list of projects returned by &lt;code&gt;nx affected&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Our nx cache does save us a significant amount of time spent on GitHub Actions, but the &lt;code&gt;nx affected&lt;/code&gt; situation definitely wasn&#39;t desirable.&lt;/p&gt;
+&lt;h2 id=&quot;results&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/smarter-nx-affected-checks/#results&quot;&gt;Results&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Here is a comparison of the amount of projects to check and their duration for our microfrontends when our shared component library was changed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Todos microfrontend:&lt;/strong&gt;&lt;br /&gt;
+&lt;code&gt;nx affected&lt;/code&gt;: 62 projects in ~12 minutes&lt;br /&gt;
+&lt;code&gt;nx-affected-dependencies-action&lt;/code&gt;: 13 projects in ~3 minutes&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Indicators microfrontend:&lt;/strong&gt;&lt;br /&gt;
+&lt;code&gt;nx affected&lt;/code&gt;: 62 projects in ~12 minutes&lt;br /&gt;
+&lt;code&gt;nx-affected-dependencies-action&lt;/code&gt;: 6 projects in ~1 minute&lt;/p&gt;
+&lt;p&gt;This means the &lt;code&gt;Todos&lt;/code&gt; release is now completed &lt;strong&gt;9 minutes faster&lt;/strong&gt; and &lt;code&gt;Indicators&lt;/code&gt; &lt;strong&gt;11 minutes faster&lt;/strong&gt; than before.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9COne%20way%20to%20speed%20up%20CI%20checks%20in%20your%20nx%20monorepo%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
+          </content>
+        </entry><entry>
+          <title>How to structure a two week internship for software development</title>
+          <link href="https://www.dev.nehranis.de/posts/two-week-software-development-internship-guide/"/>
+          <updated>2020-01-17T00:00:00Z</updated>
+          <id>https://www.dev.nehranis.de/posts/two-week-software-development-internship-guide/</id>
+          <content type="html">
+          &lt;p&gt;I came up with this plan of a two week software development internship for 16 year old school student Sidney, who I volunteered to teach the ways of a software developer. Since a lot of coworkers and parents asked me how I structured it, I summarize it here.&lt;/p&gt;
+&lt;p&gt;You can find the project that Sidney built in these two weeks here:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Source code: &lt;a href=&quot;https://github.com/SidneyK1/pong&quot;&gt;https://github.com/SidneyK1/pong&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Game: &lt;a href=&quot;https://sidneyk1.github.io/pong/&quot;&gt;https://sidneyk1.github.io/pong/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;It&#39;s his own take on the game Pong, but with a stronger tennis theme, since he plays tennis competitively.&lt;br /&gt;
+You can control the paddles via keyboard or touch input and choose between singleplayer mode against an &amp;quot;AI&amp;quot; or multiplayer against your friends. There&#39;s even a special item which increases the ball speed for a short amount of time.&lt;/p&gt;
+&lt;p&gt;I&#39;m quite proud of what he achieved in this short amount of time without having any prior programming experience.&lt;/p&gt;
+&lt;h2 id=&quot;day-1-to-day-4&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/two-week-software-development-internship-guide/#day-1-to-day-4&quot;&gt;Day 1 to Day 4&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Get to know the intern (age, hobbies, potential job interests).&lt;/p&gt;
+&lt;p&gt;Explain how you ended up working as a software developer and remember to answer questions at any time.&lt;/p&gt;
+&lt;p&gt;Explain why coding is &amp;quot;cool&amp;quot;.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Let&#39;s say an alien came, and you&#39;re like, &amp;quot;Okay, what&#39;s the importance of code?&amp;quot;.&lt;br /&gt;
+I&#39;d say, &amp;quot;Well, you know, we live on this sort of physical earth, and about 50 years ago, a small group of people started building another planet. But it wasn&#39;t physical, a virtual planet.&lt;br /&gt;
+Look around the street. You see all the people walking down the street with their head bent down and staring at their phone? They&#39;re actually in that other world. That&#39;s what code is. It&#39;s the building blocks of that other world.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;— Quote from the episode &amp;quot;Coding&amp;quot; on the &amp;quot;Explained&amp;quot; series on Netflix&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Today, coders shape literally billions of people&#39;s lives.&lt;br /&gt;
+How they work, shop, eat, date, and chill.&lt;br /&gt;
+What are you doing right now? You&#39;re watching me in a Netflix web browser.&lt;br /&gt;
+So Netflix itself is code, and it&#39;s being run in a web browser that is code,&lt;br /&gt;
+which is being run on a computer that was designed using code.&lt;br /&gt;
+It&#39;s turtles all the way down, right? Great code is like being the architect of a museum that millions of people think of and go and walk around and use every day.&lt;br /&gt;
+I think there&#39;s nothing like writing code, because it feels like pure creation.&lt;br /&gt;
+You have an idea for how something should work, and then you try to sit down in front of a computer and make that a reality.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;— Another one, same episode&lt;/p&gt;
+&lt;p&gt;Use your own words too of course ;-)&lt;/p&gt;
+&lt;p&gt;Get to know the basic concepts of programming by letting the intern do the hour of code &lt;a href=&quot;https://hourofcode.com/&quot;&gt;https://hourofcode.com/&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Some of them are available in english and german and the most popular ones even feature videos with programmers explaining each challenge.&lt;/li&gt;
+&lt;li&gt;Direct link to the different hour of code projects. Finishing one is enough, they are very similar. &lt;a href=&quot;https://hourofcode.com/de/learn&quot;&gt;https://hourofcode.com/de/learn&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Figure out together if learning programming by developing games or by developing websites is preferred. This mostly depends if the personal project should be a website or a game and should affect which codeacademy courses the intern should do.&lt;/p&gt;
+&lt;p&gt;If during the internship you happen to have some meetings that the intern can join, take them along.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Make sure to tell them about the &amp;quot;concept of two legs&amp;quot;: Once they feel that they really can&#39;t follow the meeting anymore, they can leave silently any time to continue learning by themselves.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Create an account at &lt;a href=&quot;https://codeacademy.com/&quot;&gt;https://codeacademy.com&lt;/a&gt;, no trial needed, and let the intern do the following courses (order matters!):&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.codecademy.com/learn/welcome-to-codecademy&quot;&gt;https://www.codecademy.com/learn/welcome-to-codecademy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.codecademy.com/learn/learn-html&quot;&gt;https://www.codecademy.com/learn/learn-html&lt;/a&gt; (not all parts available in free account, optional if the main project will be a game built with Phaser)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.codecademy.com/learn/learn-how-to-code&quot;&gt;https://www.codecademy.com/learn/learn-how-to-code&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.codecademy.com/learn/learn-phaser&quot;&gt;https://www.codecademy.com/learn/learn-phaser&lt;/a&gt; (It&#39;s not necessary to finish this one completely, as it&#39;s quite long. Consider stopping around &lt;a href=&quot;https://www.codecademy.com/courses/learn-phaser/lessons/learn-phaser-animations-and-tweens/exercises/sprite-sheets?action=resume_content_item&quot;&gt;here&lt;/a&gt;)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Finally decide on what the final project should be, start making notes, draw some UI stuff, write texts...&lt;/p&gt;
+&lt;p&gt;This project should be related to some passion of the intern, so that they actually care about it. If their hobbies include photography for example, it might be fun to build a personal portfolio website, like &lt;a href=&quot;https://github.com/DerMeier/portfolio-website&quot;&gt;Lukas Meier did&lt;/a&gt; during his internship.&lt;/p&gt;
+&lt;h2 id=&quot;day-5-10-building-the-project&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/two-week-software-development-internship-guide/#day-5-10-building-the-project&quot;&gt;Day 5 - 10 Building the project&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Setup their computer for building some software, while trying to explain most of the stuff that&#39;s happening in a simple manner.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Install VSCode, node and git&lt;/li&gt;
+&lt;li&gt;Create a directory for their project, including an &lt;code&gt;index.html&lt;/code&gt;, &lt;code&gt;index.js&lt;/code&gt; and &lt;code&gt;assets&lt;/code&gt; directory.&lt;/li&gt;
+&lt;li&gt;Explain git &lt;a href=&quot;https://rogerdudler.github.io/git-guide/index.html&quot;&gt;https://rogerdudler.github.io/git-guide/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Initialize a git repository in their project directory and make the initial commit.&lt;/li&gt;
+&lt;li&gt;Let the intern create their own GitHub Account.
+&lt;ul&gt;
+&lt;li&gt;Create a new repository with an appropriate name for the project.&lt;/li&gt;
+&lt;li&gt;Add the https repository url as remote origin in the local repository.&lt;/li&gt;
+&lt;li&gt;Push your local master branch.&lt;/li&gt;
+&lt;li&gt;Enable GitHub Pages hosting in the repository settings.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Create a &lt;code&gt;.gitignore&lt;/code&gt; file with the following contents:&lt;pre&gt;&lt;code&gt;dist
+node_modules
+package-lock.json
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Create a &lt;code&gt;package.json&lt;/code&gt; file with the following contents (Please update the name and homepage value):&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&amp;lt;INSERT PROJECT NAME&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;0.0.1&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;homepage&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;http://&amp;lt;GITHUB-USERNAME&gt;.github.io/&amp;lt;REPOSITORY-NAME&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;build&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;webpack --mode production&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;start&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;webpack --mode development &amp;amp;&amp;amp; webpack-dev-server&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;clean&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;rm -rf dist node_modules package-lock.json&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;predeploy&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;npm run build&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;deploy&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;gh-pages -d dist&quot;&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;dependencies&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;devDependencies&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;copy-webpack-plugin&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;^5.1.1&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;gh-pages&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;^2.2.0&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;html-webpack-plugin&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;^3.2.0&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;webpack&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;^4.40.2&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;webpack-cli&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;^3.3.9&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;webpack-dev-server&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;^3.8.1&quot;&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Create a &lt;code&gt;webpack.config.js&lt;/code&gt; file with the following contents:&lt;pre class=&quot;language-javascript&quot;&gt;&lt;code class=&quot;language-javascript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; path &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;path&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; HtmlWebpackPlugin &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;html-webpack-plugin&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; CopyWebpackPlugin &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;copy-webpack-plugin&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;module&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exports &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token literal-property property&quot;&gt;entry&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;./index.js&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token literal-property property&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token literal-property property&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;index.js&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token literal-property property&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; path&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;resolve&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;__dirname&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;dist&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;  &lt;span class=&quot;token literal-property property&quot;&gt;plugins&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;HtmlWebpackPlugin&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br /&gt;      &lt;span class=&quot;token literal-property property&quot;&gt;template&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&#39;index.html&#39;&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br /&gt;    &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;CopyWebpackPlugin&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;br /&gt;      &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token literal-property property&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;assets&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token literal-property property&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&#39;assets&#39;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;br /&gt;    &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;br /&gt;  &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;npm install&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;npm run deploy&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Change the branch in the GitHub Pages settings to the newly created &lt;code&gt;gh-pages&lt;/code&gt; one.&lt;/li&gt;
+&lt;li&gt;Run &lt;code&gt;npm run start&lt;/code&gt; to start the local development server&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Look for online tutorials (blogs or YouTube) that might fit the project requirements of your intern. This way they can start building their project independently and come to you for questions.&lt;/p&gt;
+&lt;p&gt;If for example your intern wants to create their own Pong game, let them first follow a YouTube tutorial like &lt;a href=&quot;https://www.youtube.com/watch?v=4dHlbXigtss&amp;amp;list=PL9iYZZWgVwse7tvjCHtlM_MZmUb31lSOl&quot;&gt;this&lt;/a&gt;. Once they&#39;re done, help them restructure the code as needed, so that they can start implementing their own ideas.&lt;/p&gt;
+&lt;p&gt;Teach them some simple principles and practices for writing good code like DRY (Don&#39;t repeat yourself). Keep the Single Responsibility Principle on function level, you don&#39;t necessarily want to get too deep into OOP in the scope of two weeks, this will already improve the code quality a lot.&lt;/p&gt;
+&lt;p&gt;Here&#39;s another cool Phaser project that I built with a coworker to teach kids/teenagers programming:&lt;br /&gt;
+&lt;a href=&quot;https://github.com/BastiTee/noodlejump-stackblitz/&quot;&gt;https://github.com/BastiTee/noodlejump-stackblitz/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Have fun :-)&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9CHow%20to%20structure%20a%20two%20week%20internship%20for%20software%20development%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
+          </content>
+        </entry><entry>
+          <title>My first month as Software Engineer at LeanIX</title>
+          <link href="https://www.dev.nehranis.de/posts/first-month-at-leanix/"/>
+          <updated>2019-02-12T00:00:00Z</updated>
+          <id>https://www.dev.nehranis.de/posts/first-month-at-leanix/</id>
+          <content type="html">
+          &lt;p&gt;Finding the next destination on my path as software developer was not an easy task, as there are many interesting projects and companies on the hunt for job candidates. After attending the EA Connect days to ask developers about how they feel about their work and talk with clients about how they use the product, I finally decided to sign the contract with LeanIX. In this post I would like to share my experiences from the first month of starting out.&lt;/p&gt;
+&lt;h2 id=&quot;week-1&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/first-month-at-leanix/#week-1&quot;&gt;Week 1&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On the first day, Thursday January 2nd, my &amp;quot;LeanIX Buddy&amp;quot; Laura showed me around the office and introduced me to the different teams. I joined the &amp;quot;Re:invent&amp;quot; team, which is responsible for frontend development. My new colleagues made me feel very welcome and the overall setting in the office was quite cheerful. Afterwards I met with Arjun, our Security Engineer, who helped me set up some accounts and educated me about the security policies within the company. Then it was time to set up my Macbook according to well structured onboarding checklists. It felt good to contribute this early by creating pull requests for missing or outdated information in these checklists.&lt;/p&gt;
+&lt;p&gt;On the second day I was given my first story to work on, it was about fixing a relatively old bug that occurred when recovering a Fact Sheet. This involved looking around and understanding some RxJS actions and reducers, which are responsible for managing the state of our Angular application. I haven’t worked on projects this large with reactive programming and it was exciting to discover how the software engineers at LeanIX are applying this paradigm. The best part was, that I was able to fix the bug on the same day, which I didn’t expect at all. I went home with a feeling of pride and surprise.&lt;/p&gt;
+&lt;h2 id=&quot;week-2&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/first-month-at-leanix/#week-2&quot;&gt;Week 2&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The next Monday I was assigned to help my colleague Angel on a new story, so we spent the morning doing pair programming. After lunch I was busy attending so called &amp;quot;Ramp-Up Meetings&amp;quot;, where one colleague presents a specific branch or concept within the company. I’ve had these kind of meetings every week since then, while the frequency decreased after two weeks. They helped me to understand what the different branches within the company are responsible for and getting an idea about who is who.&lt;/p&gt;
+&lt;p&gt;Once the meetings were done I was reminded that I should add unit tests for a reducer to complete my bugfix from Friday. All tests were green when I joined my team for lunch on Tuesday and by Wednesday Morning I had released my code with the help of my colleagues, who showed me what the process in JIRA looks like and how to start the relevant Jenkins jobs. There is no continuous delivery yet, but comprehensive continuous integration, which greatly supports development as well as deployment. I was happy to see that the latter required minimal manual steps to complete and that nothing is merged without the review of a developer, who was not involved in the implementation.&lt;/p&gt;
+&lt;p&gt;After lunch, Sebastian presented some learnings from his recent endeavour into bootstrapping a python project, where all developers from the company attended. Anyone can host these &amp;quot;Lunch &amp;amp; Learn&amp;quot; events and I think it’s a great way to share knowledge.&lt;/p&gt;
+&lt;p&gt;The rest of the day, my team, as well as our friends from Customer Success, were busy bughunting in our Angular application, which we had just updated from Angular 4 to Angular 7 on one of our testing servers. There were no major issues, just small design fixes that surfaced because of a new way of treating whitespace in Angular templates. The Angular 7 branch was merged and released on Thursday morning without any incidents. I’m happy that the developers can take the time to modernise like this, which minimises the risk of being held back by outdated tooling. Yay for Angular 7.2 and TypeScript 3.2.1!&lt;/p&gt;
+&lt;p&gt;But we didn’t stop there. I was assigned two new stories in our sprint, which will improve the development process in the frontend even further: &amp;quot;Enable fullTemplateCheck in the Angular Compiler&amp;quot; and &amp;quot;Increase severity of some tslint rules to error&amp;quot;. These stories involved touching a lot of different parts of code in the frontend, which makes them perfect for someone who is just starting out. They kept me busy for several days, as there a bunch of errors to fix with these stricter compiler rules.&lt;/p&gt;
+&lt;h2 id=&quot;week-3&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/first-month-at-leanix/#week-3&quot;&gt;Week 3&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;On Wednesday, January 16th, we kicked off the development of a new feature, enabling users to edit Fact Sheet subscriptions in table inline editing, which required all team members to work together. Angel and Umut presented the general architecture of the table inline editing component and outlined the parts we needed to touch to implement this feature.&lt;/p&gt;
+&lt;p&gt;We decided that it would be a good idea to start the implementation in a mob programming session on Thursday, to make sure that everyone understands the core dependencies of the feature.&lt;/p&gt;
+&lt;p&gt;I’ve never experienced this style of collaborative programming before, but it worked quite well for us. After two hours we split up into two teams that would implement separate parts based on what we had achieved until then, because at that point there were too many thoughts floating around and we started to lose focus.&lt;/p&gt;
+&lt;p&gt;There was a special event that evening, as DHL, one of our clients, had invited us to an exclusive tour of the Post Tower, the most prominent building of the Bonn skyline. The picture above was taken right after the tour.&lt;/p&gt;
+&lt;p&gt;Then came the third Friday of the month, which means it’s &amp;quot;Thank god it’s Friday&amp;quot;-Friday, where everyone who likes can bring food and we have lunch together in the office. The food was very diverse, plenty and most of all tasty. I really appreciate this tradition, coming from a company where we cooked in the office every day.&lt;/p&gt;
+&lt;p&gt;I was responsible for implementing the logic for transforming the user input of Fact Sheet subscriptions in table inline editing into objects, which we could save to our backend. As the input is quite complex, there was a lot stuff to think of. What better way to keep track of every necessary behaviour than unit tests? That’s right! Me and Ali implemented this logic using test driven development, which always helps me a ton.&lt;/p&gt;
+&lt;h2 id=&quot;week-4&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/first-month-at-leanix/#week-4&quot;&gt;Week 4&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Once we thought that we had a presentable implementation, the whole team reviewed the code together, to make sure that we actually meet all the complex requirements. Turns out we didn’t, but after adding the missing tests, it didn’t take too long until we had the final product.&lt;/p&gt;
+&lt;p&gt;The next sprint started on Thursday, January 24th, and I was assigned the story on handling Fact Sheet revision clashes in table inline editing, meaning that you get notified upon saving if someone else has edited the Fact Sheet in the meantime and you can choose between discarding your changes or overwriting the remote ones after comparing them. As of Friday, February 1st, this feature is fully implemented, including unit tests and end-to-end tests, reviewed and merged. A lot of pair programming with Patrick was involved for this one and I feel that we are generally very productive.&lt;/p&gt;
+&lt;p&gt;I’d imagine that the details of the stories I worked on this past month might be boring to some readers but I didn’t want to leave them out, as I never would’ve expected that I was going to successfully introduce such big changes in such a short time in a project I’ve never worked on before.&lt;/p&gt;
+&lt;h3 id=&quot;things-i-didn-t-get-to-mention&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/first-month-at-leanix/#things-i-didn-t-get-to-mention&quot;&gt;Things I didn’t get to mention:&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The Scrum process works really well in our team and it helps me be productive and focus, as I only work on one story at a time, which are also carefully split up into &amp;quot;easily digestible&amp;quot; chunks.&lt;/li&gt;
+&lt;li&gt;Our product team is doing a great job of coordinating stories with dependencies between teams and enabling the developers to really focus on developing and not product management.&lt;/li&gt;
+&lt;li&gt;I really like the diversity in our office, where there are people from so many different places in the world and I get to practice my Spanish with native speakers.&lt;/li&gt;
+&lt;li&gt;The chairs are comfortable and height-adjustable tables are also nice. Overall I feel like everyone gets the hardware required for working in an efficient and healthy manner.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Thanks to all of my colleagues for making me feel welcome, for my teammates who always take the time to answer my questions or take on stories together with me. I really enjoy my newly gained productivity and look forward to the new things I’m going to learn at LeanIX.&lt;/p&gt;
+&lt;p&gt;This post was originally published at &lt;a href=&quot;https://blog.leanix.net/insights/developer_at_leanix&quot;&gt;https://blog.leanix.net/insights/developer&amp;amp;#95at&amp;amp;#95leanix&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9CMy%20first%20month%20as%20Software%20Engineer%20at%20LeanIX%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
+          </content>
+        </entry><entry>
+          <title>Für zukünftige Azubis: meine Projektpräsentation als Fachinformatiker bei der IHK Abschlussprüfung</title>
+          <link href="https://www.dev.nehranis.de/posts/ihk-projektpraesentation-fachinformatiker-anwendungsentwicklung/"/>
+          <updated>2018-07-05T00:00:00Z</updated>
+          <id>https://www.dev.nehranis.de/posts/ihk-projektpraesentation-fachinformatiker-anwendungsentwicklung/</id>
+          <content type="html">
+          &lt;p&gt;Am 3. Juli 2018 habe ich meine Ausbildung zum Fachinformatiker abgeschlossen und damit nun zukünftige Azubis auch etwas von meiner erfolgreichen Präsentation haben werden, stelle ich hier meine Slides und mein Skript zur Verfügung.&lt;/p&gt;
+&lt;p&gt;Es ist übrigens immer gut, wenn ihr Köder in eurer Präsentation auslegt, auf welche die Prüfer dann im Fachgespräch eingehen. Ich war besonders überrascht, als mich einer der IHK-Prüfer sogar über Containervirtualisierung mit Docker befragt hat, was mein Vorurteil, dass in der IHK-Prüfung nur ältere Technologien thematisiert werden, widerlegt hat. So konnte ich mein breites Wissen aus dem Bonner Microservices Meetup aus dem Ärmel ziehen.&lt;/p&gt;
+&lt;p&gt;Wenn ihr noch weitere Fragen zur Abschlussprüfung für den Beruf Fachinformatiker Anwendungsentwicklung habt, dann schreibt mir einfach eine Mail oder tweetet an mich und ich werde meine Antworten gerne hier im Blog ergänzen.&lt;/p&gt;
+&lt;p&gt;Hier gibts meine Slides und mein Skript zum Download:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.xkons.de/baton_preasentation.pdf&quot;&gt;Slides&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.xkons.de/baton_projektpraesentation_skript.pdf&quot;&gt;Skript&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Der &lt;a href=&quot;https://github.com/webfactory/baton&quot;&gt;Quellcode&lt;/a&gt; für mein Abschlussprojekt ist außerdem open source :-)&lt;/p&gt;
+&lt;p&gt;Dieser Beitrag wurde ursprünlich hier veröffentlicht: &lt;a href=&quot;https://www.webfactory.de/blog/ihk-projektpraesentation-fachinformatiker-anwendungsentwicklung&quot;&gt;https://www.webfactory.de/blog/ihk-projektpraesentation-fachinformatiker-anwendungsentwicklung&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9CF%C3%BCr%20zuk%C3%BCnftige%20Azubis:%20meine%20Projektpr%C3%A4sentation%20als%20Fachinformatiker%20bei%20der%20IHK%20Abschlusspr%C3%BCfung%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
+          </content>
+        </entry><entry>
+          <title>enterJS Darmstadt 2018 - Eine Zusammenfassung ausgewählter Talks</title>
+          <link href="https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/"/>
+          <updated>2018-06-26T00:00:00Z</updated>
+          <id>https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/</id>
+          <content type="html">
+          &lt;p&gt;Dieses Jahr war ich zum zweiten Mal in Folge auf der enterJS-Konferenz in Darmstadt und fasse in diesem Beitrag einige der Talks zusammen, die ich besucht habe. Meine persönlichen Gedanken beschränke ich dabei lediglich auf kurze Kommentare, um in späteren Beiträgen genauer darauf einzugehen.&lt;/p&gt;
+&lt;h2 id=&quot;uebersicht&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/#uebersicht&quot;&gt;Übersicht&lt;/a&gt;&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/#microfrontends&quot;&gt;Micro Frontends: JavaScript Integration Patterns&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/#no-backend-pwa&quot;&gt;No-Backend Peer to Peer Progressive Web Apps&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/#accessibility&quot;&gt;Common Ways We Break Accessibility and How to Avoid Them&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/#preact&quot;&gt;We need to talk about Preact&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/#tensorflowjs&quot;&gt;TensorFlow.js&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/#reactnative&quot;&gt;Cross-Plattform-Entwicklung mit React und React Native – Möglichkeiten und Stolpersteine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/#hoc&quot;&gt;Unleash the Power of Higher-Order Components&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/#d3js&quot;&gt;Einführung in D3.js – Mächtige Datenvisualisierung im Browser&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;microfrontends&quot;&gt;Micro Frontends: JavaScript Integration Patterns&lt;/h2&gt;
+&lt;p&gt;von Nils Hartmann und Oliver Zeigermann&lt;/p&gt;
+&lt;p&gt;Nils und Oliver sind Serien-Speaker auf der enterJS. Sie beginnen den Talk mit der Behauptung, dass es genau drei Arten von Anwendungen gibt, die die bestmögliche Benutzererfahrung bieten:&lt;/p&gt;
+&lt;p&gt;Single-Page-Applications (SPA), mobile Apps und Desktop Apps. Auf die Frage, ob jemand aus dem Publikum nicht zustimmen würde, bleibt der Saal still.&lt;/p&gt;
+&lt;p&gt;Sie stellen drei Methoden/Architekturen für die Verbindung von Komponenten/Modulen im Frontend vor:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;HTML-Links&lt;/li&gt;
+&lt;li&gt;Majestic Modular Monoliths&lt;/li&gt;
+&lt;li&gt;Micro Components&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Zu 1. HTML-Links&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Die Benutzer navigieren über echte HTML-Links zwischen Seiten. Dabei ist jede Seite eine eigene SPA und sie teilen untereinander keinen State.&lt;/p&gt;
+&lt;p&gt;Diese Architektur ist besonders für Entwickler sehr bequem, da die Module der einzelnen Teams komplett unabhängig voneinander sind. Leider ist das auch der Katalysator für eine inkonsistente und schlechte Benutzererfahrung.&lt;/p&gt;
+&lt;p&gt;Als Beispiel für diese Architektur nannten Hartmann und Zeigermann Outlook Web. Hier ist der Mail Client in React implementiert und auf der linken Seite befindet sich eine Navigation, um beispielsweise von Mails zum Kalender zu wechseln. Klickt man auf den Kalender, so öffnet sich eine komplett andere Webanwendung, welche auch kein React einsetzen muss. Die Navigation, um zurück zu der React-basierten Mail Anwendung zu kommen, ist dort weiterhin vorhanden, allerdings ein bisschen anders positioniert, was für ein inkonsistente Benutzeroberfläche sorgt.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Zu 2. Majestic Modular Monoliths&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Bei einem Majestic Modular Monolith befinden sich mehrere Module auf einer Seite.&lt;/p&gt;
+&lt;p&gt;Bei der Entwicklung wird empfohlen, dass es pro Modul nur ein Team geben darf. Die Module können entweder in einem großen Repository, vorzugsweise getrennt durch die Ordnerstruktur, oder auch in individuellen npm Paketen verteilt werden.&lt;/p&gt;
+&lt;p&gt;Für Module, die nicht in die offen zugängliche npm-Registry veröffentlicht werden sollen, gibt es inhouse Lösungen wie nexus. Ein statischer Build setzt schließlich alle Module zu einer Anwendung zusammen.&lt;/p&gt;
+&lt;p&gt;Um für schnellere erste Interaktion zu sorgen, soll Lazy-Loading verwendet werden.&lt;/p&gt;
+&lt;p&gt;Der Nachteil an dieser Architektur ist, dass die Entwickler-Teams ihr Frontend-Framework nicht flexibel wählen können, wie beispielsweise bei HTML-Links.&lt;/p&gt;
+&lt;p&gt;Der Vorteil daran ist, dass generische Präsentationskomponenten, wie Buttons oder Listen, über die Teams hinweg geteilt werden können, um konsistentes Design zu erzielen. Auf diese Weise wird die beste Benutzererfahrung in SPAs erreicht.&lt;/p&gt;
+&lt;p&gt;Majestic Modular Monoliths brauchen fast immer zentrales State-Management mit Tools wie Redux.&lt;/p&gt;
+&lt;p&gt;Diese Architektur könnte sich beispielsweise für Google Docs eignen. Wenn sich der Cursor im Text des Dokuments in einer gefetteten Zeichenkette befindet, so muss sich auch die „Werkzeugleistenkomponente“ aktualisieren und den Button für fette Schrift grau hinterlegen.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Zu 3. Micro Components&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Im Gegensatz zu MMMs werden die einzelnen Module erst zur Laufzeit miteinander verbunden.&lt;/p&gt;
+&lt;p&gt;Die Kommunikation zwischen Modulen findet über einen EventBus (Vorschlag: PostalJS) oder geteilten State statt.&lt;/p&gt;
+&lt;p&gt;Man gewinnt wieder die Freiheit bezüglich der Wahl der Frontend-Frameworks, allerdings neigen diese SPAs aus genau diesem Grund dazu, recht groß zu werden, da mehrere Frameworks eingebunden gleichzeitig verwendet werden, weshalb sie eher für Desktop Apps oder Intranets verwendet werden sollten.&lt;/p&gt;
+&lt;p&gt;Die aktuell einzige Möglichkeit, um unterschiedliche Micro Components komplett ohne Interferenzen zu integrieren, sind iframes. Alternativen sind div-Tags mit script-Tags und web components, welche aber nicht ganz frei von Nebeneffekten sind.&lt;/p&gt;
+&lt;p&gt;Ein Beispiel für eine Micro Frontend Architektur ist Spotify.&lt;br /&gt;
+Kommentar&lt;/p&gt;
+&lt;p&gt;Bisher bin ich bei meinen React Apps, in welchen oft viele Komponenten denselben zentralen State manipulieren, auch gut mit EventHandlern über Props zurechtgekommen und habe Redux lediglich zu Testzwecken ausprobiert. Nils und Oliver haben offensichtlich schon viele Begegnungen mit komplexen Frontends gehabt und für mich war dieser Talk sehr spannend.&lt;/p&gt;
+&lt;h2 id=&quot;no-backend-pwa&quot;&gt;No-Backend Peer to Peer Progressive Web Apps&lt;/h2&gt;
+&lt;p&gt;von Felix Waterstraat und Sven Vowé (spreewunder GmbH)&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Use-Cases&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;offline-first Apps&lt;/li&gt;
+&lt;li&gt;Apps, die zu vertrauliche Daten verarbeiten, um sie über einen Cloud Service kommunizieren zu lassen&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Architektur&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Datenbank lokal im Browser mit PouchDB oder Minimongo, welche als Wrapper für IndexedDB und localStorage agieren.&lt;/li&gt;
+&lt;li&gt;Datenbanksicherungen im Backend bei vorhandener Internetverbindung&lt;/li&gt;
+&lt;li&gt;Peer to Peer Synchronisierung mit WebRTC&lt;/li&gt;
+&lt;li&gt;RTCDataChannel zum teilen von Anwendungsdaten unter verschiedenen Browser-Instanzen&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Das spreewunder Team kapselt diese Architektur in einem &lt;a href=&quot;https://spreewunder.com/#cloudless&quot;&gt;Framework&lt;/a&gt;, welches sie „Cloudless“ getauft haben. Es scheint allerdings nicht quelloffen zu sein.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Beispiel EKG-Messung&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Das Team der spreewunder GmbH hat einen EKG-Rekorder, nach einem gescheiterten Versuch mit Web USB, über Web Bluetooth an eine No-Backend PWA angebunden und empfängt davon ca. 40000 Datenpunkte pro Sekunde, was mit einer HTTP-Schnittstelle, im Vergleich zu jungen Web-APIs, noch viel größere Herausforderungen mitgebracht hätte. Kleinere Schwierigkeiten mit der Datendurchsatzrate konnten dabei durch das Deaktivieren des Bluetooth Low Energy Modus (BLE) und Verwendung von Bluetooth 5 gelöst werden.&lt;/p&gt;
+&lt;p&gt;Mit Hilfe von Vega, einem Wrapper für D3.js, werden die Live-Daten in einem Diagramm visualisiert.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Kommentar&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Dieser Vortrag hat mich definitiv beeindruckt und auch inspiriert, mich noch tiefer mit PWAs auseinanderzusetzen. Besonders die „persistente“ Speicherung in IndexedDB werde ich auf die Probe stellen, nachdem ich letztes Jahr schon meine &lt;a href=&quot;https://www.xkons.de/calendar/&quot;&gt;alte Kalender Web-App&lt;/a&gt; mit der localForage-Library offline-fähig gemacht habe.&lt;/p&gt;
+&lt;p&gt;Ich finde es schade, dass Cloudless nicht quelloffen ist, da ich durch die Code-Beispiele zur Erstellung und Verwaltung von WebRTC-Verbindungen sehr neugierig geworden bin.&lt;/p&gt;
+&lt;h2 id=&quot;accessibility&quot;&gt;Common Ways We Break Accessibility and How to Avoid Them&lt;/h2&gt;
+&lt;p&gt;von Laura Carvajal @lc512k&lt;/p&gt;
+&lt;p&gt;Die erste Frage, die wir uns bei Accessbility stellen sollten ist, ob unsere Seite auch ohne eine Maus bedienbar ist.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Gibt es focus styles?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;niemals outline: none&lt;/li&gt;
+&lt;li&gt;in CSS4 kommt focus-visible für tab-spezifische Focus-Styles&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Sind alle Elemente durch „Tabben“ erreichbar und in einer sinnvollen Reihenfolge?&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&amp;lt;a&amp;gt; Tags ohne href-Attribut werden nicht angesteuert, benötigen tabindex=0&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Gibt es Inhalte, die von einem hover-Effekt abhängen?&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Speziell für Screenreader ist es wichtig, dass alle &amp;lt;h&amp;gt; Tags auf einer Seite auch dessen Hierarchie widerspiegeln. Als Beispiel wird ein Video gezeigt, in dem ein blinder Mann im Rahmen eines Accessibility-Audits des Digital Accessibility Centers versucht, per Screenreader zu der Hardware-Support Seite auf der Amazon-Hilfeseite zu gelangen, wobei Elemente, die sonst &amp;lt;h2&amp;gt;-Elemente sein sollten, nämlich Unterkategorien für Hilfe (Bestellungen, Hardware, etc.), einfache Links waren. Aus diesem Grund, dauert es für den Besucher deutlich länger, zu der gewünschten Sektion zu navigieren.&lt;/p&gt;
+&lt;p&gt;H-Tags sollten auch nie zu Styling-Zwecken eingesetzt werden, sie dienen ausschließlich zur Repräsentation der Seitenstruktur!&lt;/p&gt;
+&lt;p&gt;Auf Seiten mit Video- oder Audioinhalten sind Untertitel einzubauen, welche keine Fehler enthalten und auch gut lesbar sind.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Kommentar&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Ich freue mich immer auf Talks zu Accessibility, da ich bisher jedes Mal etwas neues gelernt und ein besseres Verständnis für die verschiedenen Herausforderungen von Menschen mit Behinderungen bei der Verwendung von Websites bekomme habe.&lt;/p&gt;
+&lt;h2 id=&quot;preact&quot;&gt;We need to talk about Preact&lt;/h2&gt;
+&lt;p&gt;von Sara Vieira @NikkitaFtw&lt;/p&gt;
+&lt;p&gt;Preact ist eine JavaScript Library, die von &lt;a href=&quot;https://github.com/developit&quot;&gt;Jason Miller&lt;/a&gt; begründet wurde, während er versuchte, die Innereien von Facebooks React zu verstehen. Heute steht eine große (19200 Sterne auf GitHub) und hilfsbereite Community dahinter und es wird von zahlreichen Firmen in Produktion eingesetzt (Uber, Lyft, Financial Times).&lt;/p&gt;
+&lt;p&gt;Sara nennt einige Punkte, in denen sich Preact von React unterscheidet:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;4KB Gzipped vs 32KB React&lt;/li&gt;
+&lt;li&gt;schneidet in Rendering-Benchmarks mehr als doppelt so schnell wie React ab&lt;/li&gt;
+&lt;li&gt;preact-router wird im Gegensatz zu React Router vom selben Team maintained wie die Haupt-Library&lt;/li&gt;
+&lt;li&gt;Standard-addEventListener für Event-Handling im Gegensatz zu Synthetic Events in React&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Mit dem &lt;a href=&quot;https://github.com/developit/preact-compat&quot;&gt;preact-compat&lt;/a&gt; Paket können außerdem React-Komponenten in Preact verwendet werden. Dazu gibt es im Repository auch eine Demo. Somit schließt man sich mit der Entscheidung für Preact nicht von der großen Auswahl an existierenden React-Komponenten aus.&lt;/p&gt;
+&lt;p&gt;In Zukunft bekommt Preact sogar asynchrones DOM-Diffing.&lt;/p&gt;
+&lt;p&gt;In einer Live-Demo baut Sara mit Hilfe der &lt;a href=&quot;https://github.com/developit/preact-cli&quot;&gt;preact-cli&lt;/a&gt; eine Preact-App, die eine Liste der heutigen Spiele in der Fußball-WM Spiele inklusive einiger Details zeigt, welche sie sich von einer öffentlichen API holt.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Kommentar&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Ich arbeite im Frontend aktuell hauptsächlich mit React und fühlte mich während der Preact-Demo auch direkt zu Hause. Der Sprung von React zu Preact scheint mir alles andere als dramatisch zu sein, allerdings bin ich dem preact-compat Paket gegenüber noch etwas skeptisch, da es sich einfach zu schön anhört.&lt;/p&gt;
+&lt;p&gt;In diesem Talk ist mir außerdem zum ersten Mal die neue &lt;a href=&quot;https://reactjs.org/blog/2017/11/28/react-v16.2.0-fragment-support.html&quot;&gt;&lt;Fragment&gt;&lt;/Fragment&gt;&lt;/a&gt; Komponente aus React 16 begegnet. Endlich keine sinnlosen &amp;lt;div&amp;gt;s mehr!&lt;/p&gt;
+&lt;h2 id=&quot;tensorflowjs&quot;&gt;TensorFlow.js&lt;/h2&gt;
+&lt;p&gt;von Oliver Zeigermann @DJCordhose&lt;/p&gt;
+&lt;p&gt;Wer im Publikum macht Machine Learning? Drei Leute melden sich. Wer von euch kennt TensorFlow? Fast alle melden sich.&lt;/p&gt;
+&lt;p&gt;Oliver beantwortet für uns die Frage, warum man TensorFlow mit JavaScript verwenden wollen würde, wo doch Python viel schneller ist und es bereits viele Ressourcen dazu gibt:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Bildung&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;JavaScript kann man anfassen, man braucht nur einen Browser und Internet.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://js.tensorflow.org/tutorials/core-concepts.html&quot;&gt;Konzepte&lt;/a&gt; sind einfacher zu begreifen, wenn man damit &lt;a href=&quot;https://playground.tensorflow.org/&quot;&gt;rumspielen&lt;/a&gt; kann.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Entwicklung&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;JavaScript ist eine weitverbreitete Sprache und dadurch spricht Google mit TensorFlow nun ein größeres Publikum an.&lt;/li&gt;
+&lt;li&gt;Kombination von Number-Crunching und interaktiven Visualisierungen.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Deployment&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;JavaScript ist womöglich die einzige Option für ML, weil der Browser alles ist, was du hast.
+&lt;ul&gt;
+&lt;li&gt;mobile Endgeräte&lt;/li&gt;
+&lt;li&gt;AI in Browser-Spielen&lt;/li&gt;
+&lt;li&gt;Unabhängigkeit von GPU-Hersteller
+&lt;ul&gt;
+&lt;li&gt;Python TensorFlow unterstützt exklusiv Nvidia CUDA Grafikkarten&lt;/li&gt;
+&lt;li&gt;TensorFlow.js macht &lt;a href=&quot;https://news.ycombinator.com/item?id=15856647&quot;&gt;„irgendwas mit fragment shadern“&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Um das beste aus beiden Welten zu bekommen, sprich die Schnelligkeit von Python und die Interaktivität von JavaScript, kann man erst in Python sein &lt;a href=&quot;https://js.tensorflow.org/tutorials/import-keras.html&quot;&gt;Keras&lt;/a&gt; oder TensorFlow Modell trainieren, um es dann mit dem &lt;a href=&quot;https://github.com/tensorflow/tfjs-converter&quot;&gt;tfjs-converter&lt;/a&gt; zu einem von TensorFlow.js lesbaren Format zu konvertieren und im Browser zu laden.&lt;/p&gt;
+&lt;p&gt;In Zukunft können wir dank &lt;a href=&quot;https://twitter.com/nsthorat/status/1003986237361934338&quot;&gt;WebGPU&lt;/a&gt; noch große Performance-Boosts für TensorFlow.js erwarten.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Kommentar&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Auch wenn eine Vielzahl der Demos nicht so geklappt haben, wie erwartet, war es für mich dennoch ein sehr inspirierender Talk und ich hoffe ihr müsst nicht allzu lange warten, bis ich in diesem Blog eine Demo von einem Sprachmodell veröffentliche, das ich vor einem Jahr für den Bonn Data Science Meetup trainiert habe.&lt;/p&gt;
+&lt;h2 id=&quot;reactnative&quot;&gt;Cross-Plattform-Entwicklung mit React und React Native – Möglichkeiten und Stolpersteine&lt;/h2&gt;
+&lt;p&gt;von Jasper Meyer @jasper__meyer&lt;/p&gt;
+&lt;p&gt;Jasper berichtet von seiner Erfahrung, eine existierende React App durch react-native zu erweitern. Mit Hilfe der react-native-cli ist das schon mit dem Ausführen von „react-native init“ getan, zumindest fast. Wer eine neue App mit React Native bauen möchte, verwendet besser „create-react-native-app“.&lt;/p&gt;
+&lt;p&gt;Es wird auf einige API-Unterschiede zwischen Web-React und React Native hingewiesen:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Styles&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Web: CSS&lt;/li&gt;
+&lt;li&gt;Native: Stlye Objects&lt;/li&gt;
+&lt;li&gt;Eine Lösung für alle: &lt;a href=&quot;http://cssinjs.org/&quot;&gt;cssinjs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Media Queries&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Web: CSS&lt;/li&gt;
+&lt;li&gt;Native: Dimensions API&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Lokaler Key-Value-Store&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Web: localStorage&lt;/li&gt;
+&lt;li&gt;Native: AsyncStorage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Wer React Native Komponenten auch direkt im Web verwenden möchte, für den gibt es &lt;a href=&quot;https://github.com/necolas/react-native-web&quot;&gt;react-native-web&lt;/a&gt;. Dazu noch ein Lesetipp von Jasper: &lt;a href=&quot;https://medium.com/@yannickdot/write-once-run-anywhere-with-create-react-native-app-and-react-native-web-ad40db63eed0&quot;&gt;Write once, run anywhere with Create React (Native) App and react-native-web&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Wie darf man sich nun die Entwicklung von Komponenten in einer React Native App vorstellen?&lt;/p&gt;
+&lt;p&gt;Jasper beschreibt es mit dem bauen einer eigenen Komponenten-Library, um plattformspezifische Komponenten “automagisch” mit es6 imports zu bekommen.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/reactnative.png&quot; alt=&quot;reactnative.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Weiterer Lesetipp:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://medium.com/airbnb-engineering/sunsetting-react-native-1868ba28e30a&quot;&gt;Warum AirBnb sich von React Native abwendet&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Kommentar&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;In diesem Talk habe ich mich zum ersten Mal tiefer mit React Native befasst und habe bestimmt eine gewisse Sympathie dafür entwickelt. Am meisten stört mich wohl noch die 0 am Anfang der aktuellen react-native Version. Ich hoffe ja, dass ich in Zukunft mit Progressive Web Apps alle Plattformen glücklich machen kann. Dafür fehlt mir lediglich noch ein Pilotprojekt.&lt;/p&gt;
+&lt;h2 id=&quot;hoc&quot;&gt;Unleash the Power of Higher-Order Components&lt;/h2&gt;
+&lt;p&gt;von David Kopal @coding_lawyer&lt;/p&gt;
+&lt;p&gt;Eine kurze Definition von HOCs: Higher-Order Components sind Funktionen, die eine existierende Komponente entgegennehmen, diese manipulieren oder erweitern und eine neue Komponente zurückgeben.&lt;/p&gt;
+&lt;p&gt;David unterscheidet zwischen „smart components“, welche ausschließlich für Logik zuständig sind und „presentational components“, welche, wie es der Name schon sagt, meist nur noch aus der render Funktion bestehen. Diese „presentational components“ gilt es mit HOCs zu „dekorieren“.&lt;/p&gt;
+&lt;p&gt;Was macht eine wiederverwendbare Komponente aus? Sie ist nicht abhängig von einer spezifischen Property-Struktur.&lt;/p&gt;
+&lt;p&gt;Als erstes stellt David die sogenannte „Configured Higher-Order Component“ vor, welche dazu dient die Properties einer presentational component zu manipulieren.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/hoc1.png&quot; alt=&quot;hoc1.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;HOCs können beliebig verkettet werden:&lt;/p&gt;
+&lt;p&gt;Die &lt;a href=&quot;https://github.com/acdlite/recompose&quot;&gt;Recompose&lt;/a&gt; Library für React beinhaltet die meist verwendeten Higher-Order Components und eine compose() Funktion, welche eine beliebige Anzahl an HOCs entgegennimmt, um diese zu verketten.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/hoc2.png&quot; alt=&quot;hoc2.png&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Davids Vortrag war sehr Code-lastig und ich habe das Gefühl, dass ich dem Ausmaß der Wissensvermittlung, die ihm gelungen ist, in dieser Zusammenfassung nie gerecht werden kann.&lt;/p&gt;
+&lt;p&gt;Seine Code-Beispiele findet ihr unter &lt;a href=&quot;https://github.com/codinglawyer/hocs-code&quot;&gt;https://github.com/codinglawyer/hocs-code&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Kommentar&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Higher-Order Components (HOC) ist ein weiteres Pattern, welches mir zum ersten Mal auf der enterJS begegnet ist. Der Speaker David Kopal, ursprünglich Anwalt, erklärt in einem sehr gut strukturierten Talk die Anwendung dieses Patterns, nachdem er es großflächig in einem komplexen React Frontend eingesetzt hat. Ich denke jedoch, dass HOCs ohne Code-Beispiele nicht so spannend sind und empfehle daher, sich Davids Beispiele und auch die offizielle React Dokumentation zu diesem Thema durchzulesen: &lt;a href=&quot;https://reactjs.org/docs/higher-order-components.html&quot;&gt;https://reactjs.org/docs/higher-order-components.html&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;d3js&quot;&gt;Einführung in D3.js – Mächtige Datenvisualisierung im Browser&lt;/h2&gt;
+&lt;p&gt;von Mirco Zeiß @zemirco&lt;/p&gt;
+&lt;p&gt;D3.js ist eine JavaScript Bibliothek für Datenvisualisierungen im Web.&lt;/p&gt;
+&lt;p&gt;Über die „InputDomain“ kommen Daten in ein d3-Objekt rein und die „OutputRange“ projiziert die Daten.&lt;/p&gt;
+&lt;p&gt;In d3 gibt es drei Phasen:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Enter:      Neue Daten kommen hinzu&lt;/li&gt;
+&lt;li&gt;Update:  Bestehende Daten werden aktualisiert&lt;/li&gt;
+&lt;li&gt;Exit:        Bestehende Daten werden gelöscht&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Der Punkt (0,0) ist in D3.js immer links oben und nicht links unten, wie wir es sonst vielleicht gewohnt sind.&lt;/p&gt;
+&lt;p&gt;Die API eines d3-Objekts lässt sich auf diese Methoden zusammenfassen:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;constructor(config)&lt;/li&gt;
+&lt;li&gt;init()&lt;/li&gt;
+&lt;li&gt;render(data)&lt;/li&gt;
+&lt;li&gt;update(data)&lt;/li&gt;
+&lt;li&gt;resize(width)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;React/Vue und D3.js sind ein Dream-Team! Lasse D3.js rechnen und nutze moderne Frontend Frameworks für dynamisches Re-Rendering.&lt;/p&gt;
+&lt;p&gt;Mirco hat ein Beispiel für eine Kombination aus React und D3.js auf GitHub veröffentlicht: &lt;a href=&quot;https://github.com/zemirco/enterjs&quot;&gt;https://github.com/zemirco/enterjs&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Das dynamische Re-Rendering von Visualisierungen soll im „componentDidMount“ Lifecycle-Hook von React passieren, wobei die Reference der d3.js svg aktualisiert wird. Dabei ist es besonders wichtig, dass jeder Datenpunkt einen individuellen key hat.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Für Einsteiger/Neugierige&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Es wird empfohlen, nicht direkt mit D3.js Wrappern einzusteigen, welche meist schwer erweiterbar sind, sondern lieber mit GitHub Gists &lt;a href=&quot;http://bl.ocks.org/&quot;&gt;bl.ocks.org&lt;/a&gt; einen interaktiven D3.js Playground zu verwenden, um mit reinem JavaScript und HTML neue Visualisierungen auszuprobieren.&lt;/p&gt;
+&lt;p&gt;Hier ein Beispiel: &lt;a href=&quot;https://bl.ocks.org/zemirco/ef5dc3ae80b538e1034442c17c44237f&quot;&gt;https://bl.ocks.org/zemirco/ef5dc3ae80b538e1034442c17c44237f&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Wer heute ein Tutorial oder Buch zu D3.js bearbeiten möchte, sollte darauf achten, dass es mindestens mit Version 4 der Visualisierungs-Library arbeitet, da in dieser Version große Änderungen dazugekommen sind.&lt;/p&gt;
+&lt;p&gt;Leseempfehlung von Mirco: &lt;a href=&quot;https://medium.com/dailyjs/the-trouble-with-d3-4a84f7de011f&quot;&gt;The Trouble with D3&lt;/a&gt; plus die Diskussion auf &lt;a href=&quot;https://news.ycombinator.com/item?id=17298072&quot;&gt;Hacker News&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Kommentar&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Ich habe D3.js bisher nur indirekt über React Recharts verwendet und bin damit sehr schnell zu schönen Ergebnissen gekommen, die auch für professionelle Dashboards ausreichend waren und noch viel Spielraum bieten. Nach der inspirierenden Keynote von D3.js-Meisterin Shirley Wu war es umso spannender, einen Blick „unter die Haube“ zu werfen.&lt;/p&gt;
+&lt;h2 id=&quot;epilog&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/enterjs-darmstadt-2018-eine-zusammenfassung/#epilog&quot;&gt;Epilog&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;An dieser Stelle möchte ich mich bei den Organisatoren der enterJS bedanken, die ein wirklich qualitatives und vielfältiges Programm auf die Beine gestellt haben! Ich komme gerne wieder :-)&lt;/p&gt;
+&lt;p&gt;Dieser Beitrag wurde ursprünglich hier veröffentlicht: &lt;a href=&quot;https://www.webfactory.de/blog/enterjs-2018-talks&quot;&gt;https://www.webfactory.de/blog/enterjs-2018-talks&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9CenterJS%20Darmstadt%202018%20-%20Eine%20Zusammenfassung%20ausgew%C3%A4hlter%20Talks%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
+          </content>
+        </entry><entry>
+          <title>Tipps für den Girls&#39;Day in einer Software-Firma</title>
+          <link href="https://www.dev.nehranis.de/posts/girls-day-fuer-software/"/>
+          <updated>2018-04-30T00:00:00Z</updated>
+          <id>https://www.dev.nehranis.de/posts/girls-day-fuer-software/</id>
+          <content type="html">
+          &lt;p&gt;Zum bundesweiten Girls&#39;Day haben wir acht Schülerinnen eingeladen, um ihnen die Web-Branche vorzustellen.&lt;/p&gt;
+&lt;p&gt;Nachdem uns im März eine E-Mail von einer Mutter einer Bonner Schülerin erreicht hat, in der sie fragte, ob ihre Tochter im Rahmen des Girls&#39;Day zu uns in die Firma kommen könnte, haben wir uns auf der offiziellen Seite als Botschafter für mehr Frauen in der IT-Branche angemeldet.&lt;/p&gt;
+&lt;p&gt;Ich habe bereits 2015 einen Girls&#39;Day organisiert, als ich noch bei IBM gearbeitet habe und nahm mich daher ohne zu zögern dieser Aufgabe an. Damals war das Feedback sehr positiv, sodass ich die Agenda vollständig übernommen habe:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Kennenlernrunde&lt;/li&gt;
+&lt;li&gt;Vorstellung der Tätigkeiten in den verschiedenen Rollen bei der webfactory (Backend-Entwicklerin, Designerin, Projektmanagerin)&lt;/li&gt;
+&lt;li&gt;Spielerisch Programmieren lernen mit der &amp;quot;hour of code&amp;quot; &lt;a href=&quot;https://code.org/learn&quot;&gt;https://code.org/learn&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Gemeinsames Mittagessen&lt;/li&gt;
+&lt;li&gt;Erarbeitung und Präsentation einer eigenen Projektidee&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Mit der Unterstützung von meinen Kollegen Eva, Jano und Søren haben wir die Mädchen durch das Programm begleitet.&lt;/p&gt;
+&lt;p&gt;Mein persönlicher Höhepunkt waren die kreativen Projektideen und der feste Vorsatz von einem der zwei Projektteams, von denen sich zwei von vier Teammitgliederinnen zuvor noch nicht kannten, sich in der Freizeit zu treffen, um das Projekt weiterzuentwickeln.&lt;/p&gt;
+&lt;p&gt;Schließlich erhielt jede Teilnehmerin noch eine Liste von nützlichen Ressourcen, um mehr über Webentwicklung und Programmierung zu lernen:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Interaktive App von Google für Programmiereinsteiger (nur englisch): &lt;a href=&quot;https://grasshopper.codes/&quot;&gt;https://grasshopper.codes/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Interaktive Tutorials zu HTML und anderen Web-Technologien (nur englisch): &lt;a href=&quot;https://www.codecademy.com/learn/learn-html&quot;&gt;https://www.codecademy.com/learn/learn-html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Deutsche Website, mit der ich mir schon vor zehn Jahren HTML beigebracht habe: &lt;a href=&quot;https://wiki.selfhtml.org/&quot;&gt;https://wiki.selfhtml.org&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ich bin gespannt auf die nächsten Marktführer für Mode-Sale-Finder und community-driven Fitnessratgeber im Web.&lt;/p&gt;
+&lt;p&gt;Dieser Beitrag wurde ursprünglich hier veröffentlicht: &lt;a href=&quot;https://www.webfactory.de/blog/girls-day-2018&quot;&gt;https://www.webfactory.de/blog/girls-day-2018&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9CTipps%20f%C3%BCr%20den%20Girls&amp;#39;Day%20in%20einer%20Software-Firma%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
+          </content>
+        </entry><entry>
+          <title>Erasmus+ Social Inclusion Days: Dinner in the Dark</title>
+          <link href="https://www.dev.nehranis.de/posts/erasmusplus-social-inclusion-dinner-in-the-dark/"/>
+          <updated>2017-12-04T00:00:00Z</updated>
+          <id>https://www.dev.nehranis.de/posts/erasmusplus-social-inclusion-dinner-in-the-dark/</id>
+          <content type="html">
+          &lt;p&gt;Seit diesem Jahr engagiere ich mich beim Erasmus Student Network (ESN) Bonn. Im Rahmen der Social Inclusion Days, welche vom 27. November bis 10. Dezember 2017 stattfinden, habe ich zusammen mit ESN Bonn ein „Dinner in the Dark“ veranstaltet.&lt;/p&gt;
+&lt;p&gt;Neben meiner Tätigkeit bei der webfactory engagiere ich mich auch beim Erasmus Student Network (ESN) Bonn. Im Rahmen der Social Inclusion Days, welche vom 27. November bis 10. Dezember 2017 stattfinden, habe ich zusammen mit ESN Bonn ein „Dinner in the Dark“ veranstaltet.&lt;/p&gt;
+&lt;p&gt;Die 21 Teilnehmerplätze für Erasmusstudierende in Bonn waren innerhalb von zwei Stunden nach Beginn der Anmeldung vergeben und wir freuten uns über das große Interesse.&lt;/p&gt;
+&lt;p&gt;Es galt ein Menü, Tische, Sitzplätze, Geschirr, Besteck und Augendbinden zu organisieren.&lt;/p&gt;
+&lt;p&gt;Trotz des engen Zeitplans ist am Freitagabend alles bereit und das dreiköpfige Koch-Team bezieht um 17:30 Uhr die webfactory Küche, wo sie für den Rest des Abends kulinarische Genüsse zaubern. Ab 18 Uhr wird das webfactory Lab umgebaut und Augenbinden werden vorbereitet, bis kurz vor 19 Uhr schon die ersten Gäste eintreffen. Jeder Gast bekommt die Augen verbunden und wird daraufhin zu einem zufällig zugewiesenen Platz an der großen Tafel geführt.&lt;/p&gt;
+&lt;p&gt;Als wir den ersten Gang, Feldsalat mit Feta, Granatapfel und Walnüssen, servieren, sind neue Bekanntschaften geschlossen und von oberflächlichen Gesprächen ist keine Spur. Oft wird eine leere Gabel zum Mund geführt, weswegen manche auf manuellere Methoden umsteigen. Für die Organisatoren bieten sich recht amüsante Szenen, zum Beispiel als wir den Teller einer Teilnehmerin entfernen, sodass sie mit Gabel und Löffel den Tisch nach ihrem Salat absucht.&lt;/p&gt;
+&lt;p&gt;Vor dem Hauptgang servieren wir den Gästen erst noch ein paar Gegenstände, die sie in Teams abtasten, um zu erkennen, worum es sich handelt.&lt;/p&gt;
+&lt;p&gt;Als Hauptspeise gibt es Nudeln mit Kirschtomaten und Weißweinsauce, welche eine willkommene Abwechslung von den schwer zu befördernden Salatblättern bieten.&lt;/p&gt;
+&lt;p&gt;Im Anschluss verwöhnt uns das Koch-Team mit einem Bratapfel-Schichtdessert, dessen Keksboden für besondere Verwirrung bei der Identifizierung sorgte.&lt;/p&gt;
+&lt;p&gt;Bei einem „Dinner in the Dark“ hat man nicht nur ein erhöhtes Geschmacksempfinden, sondern bekommt auch einen Eindruck davon, wie es ist, blind zu sein. Nachdem unsere Gäste die Augenbinden abnehmen dürfen, sagt mir eine Teilnehmerin, dass sie sich zu Hause unbedingt informieren müsse, wie blinde Menschen mit den Herausforderungen zurechtkommen, mit denen Sie sich in den vergangenen zwei Stunden zum ersten Mal konfrontiert sah.&lt;/p&gt;
+&lt;p&gt;Zum Abschluss zeigen wir zur Belustigung noch die Fotos und Videos des Abends auf der Leinwand.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dev.nehranis.de/posts/erasmusplus-social-inclusion-dinner-in-the-dark/dinnerinthedark.jpg&quot; alt=&quot;dinnerinthedark.jpg&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Unsere Gäste und das ESN Bonn bedanken sich herzlich für die großzügige zur-Verfügung-Stellung der webfactory Räumlichkeiten!&lt;/p&gt;
+&lt;p&gt;Dieser Beitrag wurde ursprünglich hier veröffentlicht: &lt;a href=&quot;https://www.webfactory.de/blog/erasmus-social-inclusion-days-dinner-in-the-dark&quot;&gt;https://www.webfactory.de/blog/erasmus-social-inclusion-days-dinner-in-the-dark&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9CErasmus+%20Social%20Inclusion%20Days:%20Dinner%20in%20the%20Dark%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
+          </content>
+        </entry><entry>
+          <title>Reste retten nach Feierabend mit rudirockt.de</title>
+          <link href="https://www.dev.nehranis.de/posts/running-dinner/"/>
+          <updated>2017-10-30T00:00:00Z</updated>
+          <id>https://www.dev.nehranis.de/posts/running-dinner/</id>
+          <content type="html">
+          &lt;p&gt;Es gibt viele Gründe, warum ich die webfactory so gerne meinen Arbeitgeber nenne. Einer davon ist unser Büro und die Tatsache, dass die Räumlichkeiten außerhalb der Arbeitszeiten von jedem Mitarbeiter auch privat genutzt werden können.&lt;/p&gt;
+&lt;p&gt;So kam es, dass ich am 13. Oktober schon zum dritten Mal bei “Rudirockt&amp;quot; bzw. in diesem Fall bei &amp;quot;Rudi rettet Reste” in unserem schönen Bistro servieren konnte.&lt;/p&gt;
+&lt;p&gt;Rudirockt wurde 2005 von vier Aachener Studenten konzipiert, um Studenten dabei zu helfen Kontakte zu knüpfen. Die Idee haben sie auf der Website &lt;a href=&quot;https://www.rudirockt.de/&quot;&gt;rudirockt.de&lt;/a&gt; umgesetzt, ein soziales Netzwerk für stadtübergreifende “running dinner”. Man meldet sich in Zweier-Teams an und muss nur noch die Adresse der Küche angeben. Einen Tag vor dem Event erhält man dann eine generierte “Route” zugeschickt, dort steht wo und bei wem man jeweils die Vor-, Haupt- und Nachspeise isst.&lt;/p&gt;
+&lt;p&gt;Man kann sich Rudirockt als soziales Drei-Gänge-Menü vorstellen: Bei jedem Gang kommen drei Teams (also sechs Personen) zusammen und die Gruppen variieren jedes Mal, sodass man an diesem Abend mit insgesamt zwölf verschiedenen Personen aus den anderen Teams gegessen haben wird.&lt;/p&gt;
+&lt;p&gt;Die webfactory bietet mit der reich ausgestatteten Küche und dem gemütlichen Bistro inklusive Tischkicker die optimale Location für ein solches Event.&lt;/p&gt;
+&lt;p&gt;Während ich bei den letzten beiden Events die Hauptspeise als Wunschgang angegeben habe, entschloss ich mich dieses Mal für die Nachspeise, denn diese hat den Vorteil, dass die Gäste nicht noch weiter zum nächsten Gang gehen müssen.&lt;/p&gt;
+&lt;p&gt;Zum Nachtisch haben wir Käsekuchen nach österreichischem Rezept und eine Cidre-Bowle serviert, während die Zitronen und Orangen für Letztere ganz nach dem Motto &amp;quot;Rudi rettet Reste&amp;quot; von Foodsharing kamen. Außerdem gab es noch veganen Vanillejoghurt mit selbstgemachter Erdbeermarmelade, da wir aus der Route entnehmen konnten, dass sich ein Gast vegan ernährt.&lt;/p&gt;
+&lt;p&gt;Bei interessanten Gesprächen und viel Lachen klingelte es plötzlich an der Tür. Vier Rudirocker sind auf das fröhliche Treiben im Bistro aufmerksam geworden und haben außerdem ein Team vom vorhergehenden Mittagessen durch die großen Fenster erspäht. Selbstverständlich lud ich sie ein, sich dazu zu gesellen und so vergrößerte sich unsere Runde.&lt;/p&gt;
+&lt;p&gt;Nachdem noch zwei Freunde meines Nachtischteams dazugestoßen sind, waren wir komplett und nach einem durstlöschendem Kartenspiel war auch die Cidre-Bowle längst ausgetrunken.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dev.nehranis.de/posts/running-dinner/rudirockt.jpg&quot; alt=&quot;rudirockt.jpg&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Mit diesem Blog-Beitrag möchte ich mich für die tollen Möglichkeiten bedanken, die mir die webfactory sowohl im Beruf, als auch in der Freizeitgestaltung bietet :-)&lt;/p&gt;
+&lt;p&gt;Rudirockt wurde 2013 bei “Land der Ideen” &lt;a href=&quot;https://www.aachener-nachrichten.de/lokales/aachen/rudirockt-ausgezeichnet-bei-land-der-ideen_aid-32307239&quot;&gt;ausgezeichnet&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Dieser Beitrag wurde ursprünglich hier veröffentlicht: &lt;a href=&quot;https://www.webfactory.de/blog/reste-retten-nach-feierabend-rudirockt-bei-der-webfactory&quot;&gt;https://www.webfactory.de/blog/reste-retten-nach-feierabend-rudirockt-bei-der-webfactory&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9CReste%20retten%20nach%20Feierabend%20mit%20rudirockt.de%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
+          </content>
+        </entry>
+</feed>

@@ -1,0 +1,15 @@
+@import '../settings/variables';
+
+.header-anchor {
+  padding-right: 1ch;
+}
+
+.header-anchor:hover::after,
+.header-anchor:focus::after {
+  content: '#';
+  color: $typographic-link-font-color;
+  position: relative;
+  right: -0.5ch;
+  width: 0;
+  height: 0;
+}

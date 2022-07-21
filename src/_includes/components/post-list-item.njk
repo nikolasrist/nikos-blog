@@ -1,0 +1,11 @@
+<li class="post-item">
+    <a class="post-item__link" href="{{ post.url }}">
+        <time class="datetime color-grey" datetime="{{ post.date | htmlDateString }}">
+            {{ post.date | readableDateMonthAndYear }}
+        </time>
+
+        <h2>{{ post.data.title }}</h2>
+
+        <p class="post-item__description">{{ post.data.description | safe }}</p>
+    </a>
+</li>
