@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<link rel="alternate" type="application/rss+xml" href="/rss.xml">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Welcome to my Blog. Here I write about dev topics.">
+		<title></title>
+		<link rel="stylesheet" href="/css/style.css"/>
+		
+		<script type="text/javascript">
+			navigator
+				.serviceWorker
+				.getRegistrations()
+				.then((registrations) => {
+					if (!registrations && registrations.length === 0) {
+						return;
+					}
+					for (let registration of registrations) {
+						registration.unregister()
+					}
+				})
+		</script>
+	</head>
+	<body class="">
+		
+			<div class="sidebar">
+    <header class="sidebar__author">
+        <img src="/assets/img/photo.jpg" class="sidebar__author-photo" alt="Picture of Nikolas Rist." width="75" height="75">
+        <span class="sidebar__author-title">
+            <a  class="black-link sidebar__author-title-link black-link" href="/">Nikolas Rist</a>
+        </span>
+        <span class="sidebar__author-subtitle">Full-Stack Developer</span>
+    </header>
+    <nav class="menu">
+    <ul class="menu__list">
+        <li class="menu__list-item">
+            <a href="/" class="black-link menu__list-item-link " >Posts</a>
+        </li>
+        <li class="menu__list-item">
+            <a href="/about" class="black-link menu__list-item-link menu__list-item-link--active" aria-current="page">About me</a>
+        </li>
+    </ul>
+</nav>
+    <ul class="links__list">
+    <li class="links__list-item">
+        <a href="https://github.com/nikolasrist" target="_blank" rel="noopener noreferrer">
+            <i class="icon-github icon--larger" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="https://twitter.com/nehranis" target="_blank" rel="noopener noreferrer">
+            <i class="icon-twitter" aria-hidden="true"></i>
+            <span class="sr-only">twitter</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="mailto:nehranis@gmail.com">
+            <i class="icon-mail" aria-hidden="true"></i>
+            <span class="sr-only">Send me an email</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="https://www.linkedin.com/in/nikolas-rist-720796127">
+            <i class="icon-linkedin" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="/rss.xml">
+            <i class="icon-rss" aria-hidden="true"></i>
+            <span class="sr-only">RSS feed</span></a>
+    </li>
+</ul>
+</div>
+		
+		<main class="content">
+			
+				<h1 id="about-me" tabindex="-1"><a class="header-anchor" href="#about-me">About me</a></h1>
+<p>Hi! Thank you for visiting my website.<br>
+Here I try to publish some blog posts in german/english from time to time and keep a relatively up to date CV section.</p>
+<p>If I had to name my three main interests right now they would be as follows:</p>
+<ul>
+<li>Software (both professionally and teaching)</li>
+<li>Mindfulness</li>
+<li>Hiking</li>
+</ul>
+<h2 id="experience" tabindex="-1"><a class="header-anchor" href="#experience">Experience</a></h2>
+<h3 id="lean-ix" tabindex="-1"><a class="header-anchor" href="#lean-ix">LeanIX</a></h3>
+<p><strong>Staff Software Engineer</strong> Apr 2022 - present</p>
+<p>Just continuing to share knowledge at scale, facilitating high quality solutions for our customers' problems.</p>
+<p><strong>Senior Software Engineer</strong> May 2020 - Apr 2022</p>
+<p>Some anecdotes of my work in this role:</p>
+<p>In 2021 I was leading the development of a new feature to improve the data quality of Fact Sheets within a LeanIX workspace by introducing a new &quot;Draft&quot; quality seal status and enabling workspace admins to configure mandatory fields, relations, tag groups and subscriptions per Fact Sheet type.<br>
+<a href="https://docs-eam.leanix.net/docs/quality-states-with-mandatory-attributes" target="_blank" rel="noopener noreferrer">Link to user documentation</a></p>
+<p>Late 2020 was about editing fields on relations betweens Fact Sheets in a table view using the handsontable JavaScript library inside our angular application. This also involved some dependency housekeeping by updating from handsontable version 1.16 to version 10.</p>
+<p>In 2020 I became the frontend team lead in a newly formed cross functional team with a Java backend and a new Angular application, which is deployed and served separately as a microfrontend inside our Angular monolith. This new application provides a new view for LeanIX workspace admins to configure all things around their Fact Sheet data model. Most things in LeanIX revolve around Application Fact Sheets.</p>
+<p><strong>Software Engineer</strong> Jan 2019 - Apr 2020</p>
+<p>Delivering high quality, accessible and innovative Enterprise Architecture Solutions in a cross functional team.<br>
+Continuously improving and building features to help our customers better manage their IT landscape within the LeanIX products.</p>
+<p>I have been specializing in the frontend part of LeanIX, driving topics like our own Design System, improving our Angular application architecture and testing.</p>
+<h3 id="webfactory-gmb-h" tabindex="-1"><a class="header-anchor" href="#webfactory-gmb-h">webfactory GmbH</a></h3>
+<p><strong>Full Stack Developer</strong> Aug 2016 - Dec 2018</p>
+<p>The webfactory GmbH utilizes the Symfony PHP framework as foundation for creating state of the art websites and web applications for its customers.</p>
+<p>All employees get to attend any web development related conference they are interested in. I've been to the code.talks in Hamburg 2016, several Symfony Conferences as well as the the enterJS 2017. I really enjoy these since you get to meet so many other people from the same field and expand your knowledge based on their experience.</p>
+<h3 id="ibm-deutschland-gmb-h" tabindex="-1"><a class="header-anchor" href="#ibm-deutschland-gmb-h">IBM Deutschland GmbH</a></h3>
+<p><strong>Corporate Student in Applied Computer Science</strong> Oct 2015 - June 2016</p>
+<p>IBM Germany's dual study system allows their students to apply the theory from university during practice at IBM, trying out multiple different working fields inside the company and improve skill sets.</p>
+<p>I was working at IBM Internet of Things in my first Semester and at IBM Watson Health in the second one.</p>
+<h2 id="education" tabindex="-1"><a class="header-anchor" href="#education">Education</a></h2>
+<h3 id="aevo">Ausbilder-Eignungsverordnung</h3>
+<strong>Industrie- und Handelskammer Bonn/Rhein-Sieg</strong> December 2021
+<p>One pillar of the dual education system in Germany is the apprenticeship.<br>
+All intructors of the state-approved apprenticeships need to have passed the exam of the Ausbilder-Eignungsverordnung (in English: Ordinance on Aptitude of Instructors).</p>
+<h3 id="computer-science-expert" tabindex="-1"><a class="header-anchor" href="#computer-science-expert">Computer Science Expert</a></h3>
+<p><strong>Industrie- und Handelskammer Bonn/Rhein-Sieg</strong> August 2016 - July 2018</p>
+<p>I discontinued my studies at the DHBW to switch from one vocational education path in Germany to the other: an apprenticeship in software development (in german: &quot;Fachinformatiker für Anwendungsentwicklung&quot;).</p>
+<p>As IBM did not offer this at the time, I looked for a software company in Germany that fosters an apprenticeship culture of mentorship and learning, rather than doing unpopular or repetitve taks that have not been automated.</p>
+<p>I found the perfect match at the webfactory GmbH in Bonn.</p>
+<h3>Applied Computer Science</h3><span>(no degree)</span>
+<p><strong>Baden-Wuerttemberg Cooperative State University (DHBW)</strong> Oct 2015 - June 2016</p>
+<p>The dual study program is a combination of IT subjects and general business fields. Courses range from mathematics to learning programming languages and understanding of computer hardware as well as intercultural communication and project management.<br>
+One semester of six months consists of three months university studies and three months working within IBM.</p>
+<p>Courses</p>
+<ul>
+<li>Linear Algebra</li>
+<li>Programming in C, Lisp and Prolog</li>
+<li>Business administration</li>
+<li>Intercultural communication</li>
+<li>Web engineering <a href="https://www.xkons.de/calendar/" target="_blank" rel="noopener noreferrer">View course project</a></li>
+</ul>
+<h3 id="matura" tabindex="-1"><a class="header-anchor" href="#matura">Matura</a></h3>
+<p><strong>Bundesgymnasium Fürstenfeld</strong> 2011 - 2015</p>
+<p>During my graduation I wrote a paper on modern mobile operating systems, which you can download <a href="/assets/vwa.pdf">here</a>.</p>
+<p><strong>Maximiliansgymnasium München</strong> 2007 - 2011</p>
+<p>The Maximiliansgymnasium is one of the three oldest grammar schools in Munich and places a focus on humanistic education: Latin and Ancient Greek are mandatory studies.</p>
+<h2 id="projects" tabindex="-1"><a class="header-anchor" href="#projects">Projects</a></h2>
+<h3 id="company-engineering-blog" tabindex="-1"><a class="header-anchor" href="#company-engineering-blog">Company Engineering Blog</a></h3>
+<p>In my senior role at the LeanIX GmbH I developed and launched the <a target="_blank" rel="noreferrer" href="https://engineering.leanix.net">LeanIX Engineering Blog</a> with the support of my team's engineering manager. I used the eleventy static site generator to build a platform for our engineers to share their learnings publicly.</p>
+<p>While some voices outside of the engineering department were pushing for a CMS as a service solution for hosting this blog, I've found that maintaining it inside a GitHub repository and writing posts in markdown has made the platform more attractive for its author target group by using tools that feel familiar to them.</p>
+<h3 id="teaching-programming" tabindex="-1"><a class="header-anchor" href="#teaching-programming">Teaching Programming</a></h3>
+<p>Since I've taught myself programming at the age of twelve, I want to share my passion for software development with children and teenagers to help them do the same and discover how fun it can be.</p>
+<p>Together with a colleague I've created the open source project Noodlejump that can be used in a day workshop to teach teenagers some JavaScript.</p>
+<p><a href="https://github.com/BastiTee/noodlejump-stackblitz/">View Noodlejump on GitHub</a></p>
+<p>Since 2021 I am a <a href="#aevo">state tested</a> instructor for apprenticeships in Germany. This enables me to teach the &quot;IT Specialist in application development&quot; and &quot;IT Specialist in system integration&quot; apprenticeships.</p>
+<h3 id="baton" tabindex="-1"><a class="header-anchor" href="#baton">Baton</a></h3>
+<p>Baton is a Composer dependency analytics tool that helps you keep track of the Composer dependencies in your PHP projects. I built this tool as the final project of my apprenticeship in software development.</p>
+<p><a href="https://github.com/webfactory/baton">View Baton on GitHub</a></p>
+<h3 id="ibm-watson-health-watson-for-oncology-and-watson-genomic-analytics-for-dach" tabindex="-1"><a class="header-anchor" href="#ibm-watson-health-watson-for-oncology-and-watson-genomic-analytics-for-dach">IBM Watson Health - Watson for Oncology and Watson Genomic Analytics for DACH</a></h3>
+<p>Process and market analysis of oncology and cancer treatment with a focus on IBM's Watson for Oncology and Watson Genomic Analytics solutions.</p>
+<p>IBM Watson Health is pioneering a new partnership between humanity and technology with the goal of transforming global health. Cognitive systems that understand, reason, and learn are helping people expand their knowledge base, improve their productivity and deepen their expertise.</p>
+<h3 id="ibm-internet-of-things-designing-and-developing-a-web-app-within-io-t-services-team" tabindex="-1"><a class="header-anchor" href="#ibm-internet-of-things-designing-and-developing-a-web-app-within-io-t-services-team">IBM Internet of Things - Designing and Developing a Web App within IoT Services Team</a></h3>
+<p>Two corporate students and I developed an application for location-aware parcel delivery using three main technologies: Node.js, AngularJS and, a MySQL database.</p>
+<h3 id="steirerspargel-website-relaunch" tabindex="-1"><a class="header-anchor" href="#steirerspargel-website-relaunch">Steirerspargel Website Relaunch</a></h3>
+<p>This was my first web development project to actually go live (December 2014). I used HTML and CSS only. <a href="http://www.steirerspargel.at/">View website</a></p>
+
+			
+		</main>
+	</body>
+</html>

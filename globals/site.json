@@ -1,0 +1,21 @@
+{
+  "name": "Nikolas Rist",
+  "url": "https://www.dev.nehranis.de",
+  "author": {
+    "name": "Nikolas Rist",
+    "handle": "@nehranis",
+    "email": "nehranis@gmail.com"
+  },
+  "images": {
+    "favicon": "/img/favicon.ico",
+    "apple_touch_icon": "/img/meta/apple-touch-icon.png",
+    "twitter": "/img/meta/twitter.jpg",
+    "og": "/img/meta/og.jpg"
+  },
+  "social_links": {
+    "github": "https://github.com/nikolasrist",
+    "twitter": "https://twitter.com/nehranis",
+    "rss": "https://www.blog.nehranis.de/rss.xml",
+    "linkedin": "https://www.linkedin.com/in/nikolas-rist-720796127"
+  }
+}
