@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<link rel="alternate" type="application/rss+xml" href="/rss.xml">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Welcome to my Blog. Here I write about dev topics.">
+		<title>Introducing my new blog</title>
+		<link rel="stylesheet" href="/css/style.css"/>
+		
+		<script type="text/javascript">
+			navigator
+				.serviceWorker
+				.getRegistrations()
+				.then((registrations) => {
+					if (!registrations && registrations.length === 0) {
+						return;
+					}
+					for (let registration of registrations) {
+						registration.unregister()
+					}
+				})
+		</script>
+	</head>
+	<body class="no-grid">
+		
+	<a href="/" class="link-button post-home-link">All Posts</a>
+
+		<main class="content">
+			
+    <article class="post-detail">
+
+        <header class="page-header length-optimal">
+            <h1 class="post-title">Introducing my new blog</h1>
+        </header>
+
+        <h1 id="welcome-to-my-new-blog" tabindex="-1"><a class="header-anchor" href="#welcome-to-my-new-blog">Welcome to my new blog!</a></h1>
+<p>I am very excited to start this new chapter in my career. On this blog I try to post about stuff I work with, I learn or just think it is important to share.</p>
+<p>This is my first blog, and I am willing to learn and improve it over time. I am really happy to hear feedback and improvement ideas, so feel free to contact me via the different channels available.</p>
+<p>Niko</p>
+
+
+        <em class="post-publish-date">Published 21 Jul 2022</em>
+
+    </article>
+
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Introducing my new blog",
+        "author": {
+            "@type": "Person",
+            "name": "Nikolas Rist"
+        },
+        "datePublished": "2022-07-21",
+        "dateModified": "2022-07-21"
+    }
+    </script>
+
+
+		</main>
+	</body>
+</html>
