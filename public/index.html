@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<link rel="alternate" type="application/rss+xml" href="/rss.xml">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Welcome to my Blog. Here I write about dev topics.">
+		<title>Nehranis - dev blog</title>
+		<link rel="stylesheet" href="/css/style.css"/>
+		
+		<script type="text/javascript">
+			navigator
+				.serviceWorker
+				.getRegistrations()
+				.then((registrations) => {
+					if (!registrations && registrations.length === 0) {
+						return;
+					}
+					for (let registration of registrations) {
+						registration.unregister()
+					}
+				})
+		</script>
+	</head>
+	<body class="">
+		
+			<div class="sidebar">
+    <header class="sidebar__author">
+        <img src="/assets/img/photo.jpg" class="sidebar__author-photo" alt="Picture of Nikolas Rist." width="75" height="75">
+        <span class="sidebar__author-title">
+            <a aria-current="page" class="black-link sidebar__author-title-link black-link" href="/">Nikolas Rist</a>
+        </span>
+        <span class="sidebar__author-subtitle">Full-Stack Developer</span>
+    </header>
+    <nav class="menu">
+    <ul class="menu__list">
+        <li class="menu__list-item">
+            <a href="/" class="black-link menu__list-item-link menu__list-item-link--active" aria-current="page">Posts</a>
+        </li>
+        <li class="menu__list-item">
+            <a href="/about" class="black-link menu__list-item-link " >About me</a>
+        </li>
+    </ul>
+</nav>
+    <ul class="links__list">
+    <li class="links__list-item">
+        <a href="https://github.com/nikolasrist" target="_blank" rel="noopener noreferrer">
+            <i class="icon-github icon--larger" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="https://twitter.com/nehranis" target="_blank" rel="noopener noreferrer">
+            <i class="icon-twitter" aria-hidden="true"></i>
+            <span class="sr-only">twitter</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="mailto:nehranis@gmail.com">
+            <i class="icon-mail" aria-hidden="true"></i>
+            <span class="sr-only">Send me an email</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="https://www.linkedin.com/in/nikolas-rist-720796127">
+            <i class="icon-linkedin" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="/rss.xml">
+            <i class="icon-rss" aria-hidden="true"></i>
+            <span class="sr-only">RSS feed</span></a>
+    </li>
+</ul>
+</div>
+		
+		<main class="content">
+			
+    <h1>Posts</h1>
+    <ul class="list-unstyled">
+        
+            <li class="post-item">
+    <a class="post-item__link" href="/posts/introduction/">
+        <time class="datetime color-grey" datetime="2022-07-21">
+            July 2022
+        </time>
+
+        <h2>Introducing my new blog</h2>
+
+        <p class="post-item__description">Introduction to my new blog post.</p>
+    </a>
+</li>
+        
+    </ul>
+
+		</main>
+	</body>
+</html>

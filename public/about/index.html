@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<link rel="alternate" type="application/rss+xml" href="/rss.xml">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Welcome to my Blog. Here I write about dev topics.">
+		<title></title>
+		<link rel="stylesheet" href="/css/style.css"/>
+		
+		<script type="text/javascript">
+			navigator
+				.serviceWorker
+				.getRegistrations()
+				.then((registrations) => {
+					if (!registrations && registrations.length === 0) {
+						return;
+					}
+					for (let registration of registrations) {
+						registration.unregister()
+					}
+				})
+		</script>
+	</head>
+	<body class="">
+		
+			<div class="sidebar">
+    <header class="sidebar__author">
+        <img src="/assets/img/photo.jpg" class="sidebar__author-photo" alt="Picture of Nikolas Rist." width="75" height="75">
+        <span class="sidebar__author-title">
+            <a  class="black-link sidebar__author-title-link black-link" href="/">Nikolas Rist</a>
+        </span>
+        <span class="sidebar__author-subtitle">Full-Stack Developer</span>
+    </header>
+    <nav class="menu">
+    <ul class="menu__list">
+        <li class="menu__list-item">
+            <a href="/" class="black-link menu__list-item-link " >Posts</a>
+        </li>
+        <li class="menu__list-item">
+            <a href="/about" class="black-link menu__list-item-link menu__list-item-link--active" aria-current="page">About me</a>
+        </li>
+    </ul>
+</nav>
+    <ul class="links__list">
+    <li class="links__list-item">
+        <a href="https://github.com/nikolasrist" target="_blank" rel="noopener noreferrer">
+            <i class="icon-github icon--larger" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="https://twitter.com/nehranis" target="_blank" rel="noopener noreferrer">
+            <i class="icon-twitter" aria-hidden="true"></i>
+            <span class="sr-only">twitter</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="mailto:nehranis@gmail.com">
+            <i class="icon-mail" aria-hidden="true"></i>
+            <span class="sr-only">Send me an email</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="https://www.linkedin.com/in/nikolas-rist-720796127">
+            <i class="icon-linkedin" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn</span></a>
+    </li>
+    <li class="links__list-item">
+        <a href="/rss.xml">
+            <i class="icon-rss" aria-hidden="true"></i>
+            <span class="sr-only">RSS feed</span></a>
+    </li>
+</ul>
+</div>
+		
+		<main class="content">
+			
+				<h1 id="about-me" tabindex="-1"><a class="header-anchor" href="#about-me">About me</a></h1>
+<p>Hi! Welcome to my website.<br>
+This page is the place I use to share my knowledge, interests in the scope of programming and everything related to that.<br>
+I have a master’s degree in Computer Science, and like to solve hard problems.</p>
+<p>Right now, I am working as a Senior Software Engineer in the engineering <a href="https://engineering.leanix.net">@LeanIX</a>.</p>
+<p>In the past, I worked in the area of chemo informatics during my bachelor's degree and some other places. This will be added in the future in the following section.</p>
+<h2 id="experience" tabindex="-1"><a class="header-anchor" href="#experience">Experience</a></h2>
+<p>Will be updated in the future.</p>
+
+			
+		</main>
+	</body>
+</html>

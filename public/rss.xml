@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Nikolas Rist</title>
+  <subtitle></subtitle>
+  <link href="https://www.dev.nehranis.de/rss.xml" rel="self"/>
+  <link href="https://www.dev.nehranis.de/"/>
+  <updated>2022-07-21T00:00:00Z</updated>
+  <id>https://www.dev.nehranis.de//</id>
+  <author>
+    <name>Nikolas Rist</name>
+    <email>nehranis@gmail.com</email>
+  </author><entry>
+          <title>Introducing my new blog</title>
+          <link href="https://www.dev.nehranis.de/posts/introduction/"/>
+          <updated>2022-07-21T00:00:00Z</updated>
+          <id>https://www.dev.nehranis.de/posts/introduction/</id>
+          <content type="html">
+          &lt;h1 id=&quot;welcome-to-my-new-blog&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/introduction/#welcome-to-my-new-blog&quot;&gt;Welcome to my new blog!&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;I am very excited to start this new chapter in my career. On this blog I try to post about stuff I work with, I learn or just think it is important to share.&lt;/p&gt;
+&lt;p&gt;This is my first blog, and I am willing to learn and improve it over time. I am really happy to hear feedback and improvement ideas, so feel free to contact me via the different channels available.&lt;/p&gt;
+&lt;p&gt;Niko&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9CIntroducing%20my%20new%20blog%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
+          </content>
+        </entry>
+</feed>
