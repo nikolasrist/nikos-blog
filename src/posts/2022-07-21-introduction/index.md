@@ -1,7 +1,7 @@
 ---
 date: 2022-07-21
 title: "Introducing my new blog"
-description: Introduction to my new blog post.
+description: Introduction to my new website.
 layout: layouts/post
 tags:
   - blog
