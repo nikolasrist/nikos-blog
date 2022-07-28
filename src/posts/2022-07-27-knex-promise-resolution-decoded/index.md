@@ -28,7 +28,7 @@ export const fooDAO = {
 };
 ```
 
-Let's walk through the differences between both functions. The first function returns a `Promise` object, and the query is executed against the database. The second function returns a `QueryBuilder` object instead, even though, the typing states, it returns a `Promise<number>`. In this case, the query is not executed directly. We will take a closer look later, why this is the case.
+Let's walk through the differences between both functions. The first function `delete` returns a `Promise` object, and the query is executed against the database. The second function `insert` returns a `QueryBuilder` object instead, even though, the typing states, it returns a `Promise<Foo[]>`. In this case, the query is not executed directly. We will take a closer look later, why this is the case.
 
 You might argue, why is the compiler not complaining as the typing is obviously wrong, and why does it have different behavior?
 
