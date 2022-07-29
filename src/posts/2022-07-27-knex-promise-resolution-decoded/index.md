@@ -84,7 +84,7 @@ Let's transform the DAO to have a pleasant interface and user experience.
 
 This section is named “The better way” on purpose because I want to avoid stating it is the right and only way.
 
-The small but important change to our introducing issue code is, that we add the `await` within the `insert` function to _execute_ the query on function call and return a `Promise` instead of the `QueryBuilder` as in the above example.
+The small but important change is, that we add the `await` within the `insert` function to _execute_ the query on function call and return a `Promise` instead of the `QueryBuilder` as in the above example.
 
 ```typescript
 export const fooDAO = {
