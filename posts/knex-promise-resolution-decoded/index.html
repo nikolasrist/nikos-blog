@@ -57,17 +57,18 @@
 <p>This improved typing for the <code>insert</code> function now indicates clearly that a <code>QueryBuilder</code> is returned and not a <code>Promise</code>. It might help to prevent issues like described above, but is not a nice interface and usage for the DAO, is it?</p>
 <p>Let's transform the DAO to have a pleasant interface and user experience.</p>
 <h2 id="the-better-way" tabindex="-1"><a class="header-anchor" href="#the-better-way">The better way</a></h2>
-<p>This section is named “The better way” on purpose because I want to avoid stating it is the right and only way.  I would argue it is the better one, than returning a <code>QueryBuilder</code> from DAO functions.<br>
-As you already can imagine, the recommendation is, to always return a real <em>Promises</em> and not <code>QueryBuilder</code> objects.</p>
+<p>This section is named “The better way” on purpose because I want to avoid stating it is the right and only way.</p>
+<p>The small but important change to our introducing issue code is, that we add the <code>await</code> within the <code>insert</code> function to <em>execute</em> the query on function call and return a <code>Promise</code> instead of the <code>QueryBuilder</code> as in the above example.</p>
 <pre class="language-typescript"><code class="language-typescript"><span class="token keyword">export</span> <span class="token keyword">const</span> fooDAO <span class="token operator">=</span> <span class="token punctuation">{</span><br>  <span class="token keyword">delete</span><span class="token operator">:</span> <span class="token punctuation">(</span>pg<span class="token operator">:</span> Knex<span class="token punctuation">,</span> itemId<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span><span class="token builtin">number</span><span class="token operator">></span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token keyword">await</span> pg<span class="token punctuation">.</span><span class="token generic-function"><span class="token function">table</span><span class="token generic class-name"><span class="token operator">&lt;</span>Foo<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">del</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">where</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">,</span> itemId<span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><span class="token punctuation">,</span><br><br>  insert<span class="token operator">:</span> <span class="token keyword">async</span> <span class="token punctuation">(</span>pg<span class="token operator">:</span> Knex<span class="token punctuation">,</span> item<span class="token operator">:</span> FooUpdate<span class="token punctuation">)</span><span class="token operator">:</span> <span class="token builtin">Promise</span><span class="token operator">&lt;</span>Foo<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">></span> <span class="token operator">=></span> <span class="token punctuation">{</span><br>    <span class="token keyword">return</span> <span class="token keyword">await</span> pg<span class="token punctuation">.</span><span class="token generic-function"><span class="token function">table</span><span class="token generic class-name"><span class="token operator">&lt;</span>Foo<span class="token operator">></span></span></span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">returning</span><span class="token punctuation">(</span><span class="token string">'*'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre>
 <p>This fixed DAO always ensures, that the queries are really being executed on function call and return a <code>Promise</code> which can be handled properly.<br>
-DAOs should always return data and encapsulate the database queries, and not leak them to the outside. This makes the interface much simpler and easy to use.</p>
+I would argue this is the better approach, than returning a <code>QueryBuilder</code> from DAO functions. Therefore, I recommend to always return a real <em>Promises</em> and not <code>QueryBuilder</code> objects.<br>
+This makes the interface much cleaner and easier to understand. In addition, this approach does not leak internal logic to the outside.</p>
 <h2 id="conclusion" tabindex="-1"><a class="header-anchor" href="#conclusion">Conclusion</a></h2>
 <p>Typescript helps a lot in preventing you from introducing bugs, but it is not the silver bullet for everything. There might be other libraries or functions having similar typing in place, therefore always understand the libraries you use.<br>
 For Knex.js, be aware of the typing issue with the <code>QueryBuilder</code> and <code>Promise</code> object, to prevent unexpected behavior. Nevertheless, it is the better way to implement DAOs in a way encapsulating the queries and only return data within a <code>Promise</code>.</p>
 
 
-        <em class="post-publish-date">Published 27 Jul 2022</em>
+        <em class="post-publish-date">Published 29 Jul 2022</em>
 
     </article>
 
@@ -81,8 +82,8 @@ For Knex.js, be aware of the typing issue with the <code>QueryBuilder</code> and
             "@type": "Person",
             "name": "Nikolas Rist"
         },
-        "datePublished": "2022-07-27",
-        "dateModified": "2022-07-27"
+        "datePublished": "2022-07-29",
+        "dateModified": "2022-07-29"
     }
     </script>
 
