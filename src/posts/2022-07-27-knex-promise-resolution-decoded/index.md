@@ -1,5 +1,5 @@
 ---
-date: 2022-07-27
+date: 2022-07-29
 title: Knex.js promise resolution decoded
 description: This article explains some details on the Knex.js QueryBuilder interface and their impacts.
 author: nikolas-rist
@@ -82,8 +82,9 @@ Let's transform the DAO to have a pleasant interface and user experience.
 
 ## The better way
 
-This section is named “The better way” on purpose because I want to avoid stating it is the right and only way.  I would argue it is the better one, than returning a `QueryBuilder` from DAO functions.
-As you already can imagine, the recommendation is, to always return a real _Promises_ and not `QueryBuilder` objects.
+This section is named “The better way” on purpose because I want to avoid stating it is the right and only way.
+
+The small but important change to our introducing issue code is, that we add the `await` within the `insert` function to _execute_ the query on function call and return a `Promise` instead of the `QueryBuilder` as in the above example.
 
 ```typescript
 export const fooDAO = {
@@ -98,7 +99,8 @@ export const fooDAO = {
 ```
 
 This fixed DAO always ensures, that the queries are really being executed on function call and return a `Promise` which can be handled properly.
-DAOs should always return data and encapsulate the database queries, and not leak them to the outside. This makes the interface much simpler and easy to use.
+I would argue this is the better approach, than returning a `QueryBuilder` from DAO functions. Therefore, I recommend to always return a real _Promises_ and not `QueryBuilder` objects.
+This makes the interface much cleaner and easier to understand. In addition, this approach does not leak internal logic to the outside.
 
 ## Conclusion
 
