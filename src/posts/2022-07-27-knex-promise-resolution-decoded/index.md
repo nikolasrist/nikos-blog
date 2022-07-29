@@ -10,7 +10,7 @@ tags:
   - blog
 ---
 
-This blog post tackles a small but important detail in the Knex.js `QueryBuilder` interface. Misused, it can cause race conditions and unexpected behavior while communicating with the database.
+This blog post tackles a small but important detail in the Knex.js `QueryBuilder` interface. Misused, it can cause race conditions and unexpected behavior within your application using your DAOs.
 
 ## The issue
 
