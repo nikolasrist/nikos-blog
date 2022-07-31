@@ -18,7 +18,7 @@ Let's try to understand the issue with help of the following example DAO:
 
 ```typescript
 export const fooDAO = {
-  delete: (pg: Knex, itemId: string): Promise<number> => {
+  delete: async (pg: Knex, itemId: string): Promise<number> => {
     return await pg.table<Foo>('foo').del().where('id', itemId);
   },
 
@@ -66,7 +66,7 @@ Let's re-write the DAO with correct typing, which indicates the different return
 
 ```typescript
 export const fooDAO = {
-  delete: (pg: Knex, itemId: string): Promise<number> => {
+  delete: async (pg: Knex, itemId: string): Promise<number> => {
     return await pg.table<Foo>('foo').del().where('id', itemId);
   },
 
@@ -88,7 +88,7 @@ The small but important change is, that we add the `await` within the `insert` f
 
 ```typescript
 export const fooDAO = {
-  delete: (pg: Knex, itemId: string): Promise<number> => {
+  delete: async (pg: Knex, itemId: string): Promise<number> => {
     return await pg.table<Foo>('foo').del().where('id', itemId);
   },
 
