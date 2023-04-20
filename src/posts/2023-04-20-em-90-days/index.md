@@ -1,7 +1,7 @@
 ---
 date: 2023-04-20
 title: 90 days as Engineering Manager
-description: From a Developer to Manager - My first 90 days
+description: From a Developer to Manager - A retrospective on my first 90 days
 author: nikolas-rist
 templateEngineOverride: njk,md
 tags:
