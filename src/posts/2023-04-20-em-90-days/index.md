@@ -1,6 +1,6 @@
 ---
 date: 2023-04-20
-title: Blog Post - 90 days as Engineering Manager
+title: 90 days as Engineering Manager
 description: From a Developer to Manager - My first 90 days
 author: nikolas-rist
 templateEngineOverride: njk,md
@@ -9,7 +9,6 @@ tags:
 ---
 
 On January 1st, I started as an Engineering Manager (EM) after a few years of being an Individual Contributor (IC). This blog post highlights my learnings throughout the first 90 days. 
-
 
 When I got asked if I wanted to become an EM of one of the core teams in [LeanIX EAM](https://www.leanix.net/de/produkte/enterprise-architecture-management) Engineering, I felt uncertain whether I was ready for the EM role. I found the experience as an EM both fun and challenging. After 90 days, it is time for a first recap. It allowed me to learn a lot already, while I sometimes found myself pushed to my limits. 
 
