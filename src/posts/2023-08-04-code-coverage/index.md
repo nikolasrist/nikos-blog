@@ -6,6 +6,7 @@ author: nikolas-rist
 templateEngineOverride: njk,md
 tags:
   - blog
+  - culture
 ---
 
 Code coverage is a critical aspect of software development that presumably determines the effectiveness of detecting faults and errors in a program. It measures the degree to which the source code of a program is tested by a set of test cases. The higher the code coverage, the more effective the testing is believed to be at identifying defects in the software.

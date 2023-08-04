@@ -6,6 +6,7 @@ author: nikolas-rist
 templateEngineOverride: njk,md
 tags:
   - blog
+  - culture
 ---
 
 On January 1st, I started as an Engineering Manager (EM) after a few years of being an Individual Contributor (IC). This blog post highlights my learnings throughout the first 90 days. 
