@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<link rel="alternate" type="application/rss+xml" href="/rss.xml">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Welcome to my Blog. Here I write about dev topics.">
+		<title>How Code Coverage can be useful</title>
+		<link rel="stylesheet" href="/css/style.css"/>
+		
+		<script type="text/javascript">
+			navigator
+				.serviceWorker
+				.getRegistrations()
+				.then((registrations) => {
+					if (!registrations && registrations.length === 0) {
+						return;
+					}
+					for (let registration of registrations) {
+						registration.unregister()
+					}
+				})
+		</script>
+	</head>
+	<body class="no-grid">
+		
+	<a href="/" class="link-button post-home-link">All Posts</a>
+
+		<main class="content">
+			
+    <article class="post-detail">
+
+        <header class="page-header length-optimal">
+            <h1 class="post-title">How Code Coverage can be useful</h1>
+        </header>
+
+        <p>Code coverage is a critical aspect of software development that presumably determines the effectiveness of detecting faults and errors in a program. It measures the degree to which the source code of a program is tested by a set of test cases. The higher the code coverage, the more effective the testing is believed to be at identifying defects in the software.</p>
+<p>As a programmer, it is essential to have a good understanding of code coverage and how it works. This knowledge helps you to write better tests, identify potential bugs, and improve the overall quality of your code. This blog post provides my opinion on how to make code coverage a powerful tool rather than a burden.</p>
+<h1 id="tl-dr" tabindex="-1"><a class="header-anchor" href="#tl-dr">TL;DR</a></h1>
+<p>You might come to the point, where 100% code coverage is not useful and provides only overhead and feels like a burden. Be wise in choosing what to test, and test this with 100% coverage.</p>
+<h2 id="definition" tabindex="-1"><a class="header-anchor" href="#definition">Definition</a></h2>
+<p>Let’s take the definition from <a href="https://en.wikipedia.org/wiki/Code_coverage">Wikipedia</a> as a common ground to talk about code coverage.</p>
+<p>The main aspects of code coverage are:</p>
+<ul>
+<li>Function coverage
+<ul>
+<li>Which function is called within my tests?</li>
+</ul>
+</li>
+<li>Statement coverage
+<ul>
+<li>Are all statements executed during my tests?</li>
+</ul>
+</li>
+<li>Edge coverage
+<ul>
+<li>Are all edges in the logical flow covered by my tests?</li>
+</ul>
+</li>
+<li>Condition coverage
+<ul>
+<li>Are all boolean operations evaluated for both cases <code>true</code> and <code>false</code>?</li>
+</ul>
+</li>
+</ul>
+<p>You can find additional explanations and more details, especially about the difference between <code>Code Coverage</code> and <code>Test Coverage</code> in this blog post: <a href="https://saucelabs.com/resources/blog/code-coverage-vs-test-coverage">https://saucelabs.com/resources/blog/code-coverage-vs-test-coverage</a></p>
+<h2 id="100-code-coverage-for-the-sake-of-it" tabindex="-1"><a class="header-anchor" href="#100-code-coverage-for-the-sake-of-it">100% code coverage for the sake of it</a></h2>
+<p>What do I mean by “100% code coverage for the sake of it”? Some people think 100% code coverage will bring them into the heaven of bug-free software. Unfortunately, this is not true, and from my perspective, 100% code coverage has a considerable disadvantage, as I experienced myself in past projects. In multiple projects, we decided to have 100% code coverage, and if we do not reach it, the CI/CD pipeline will fail. You will come across an example in the following, maybe you already remember similar experiences?</p>
+<p>Originally, it was really nice to see 100% for all existing code parts. As we reached a level of complexity in the project, it became really difficult to test every piece of the code base, and it felt even stupid at some point. Let me give you an example of when I had these feelings: We added one additional parameter to our DAO function, and I had to update 70 unit tests all over the place using the mocked DAO. In the end, the change introduced a regression that was not detected by all the unit tests.</p>
+<p>With a growing code base, spending more and more time writing and adapting many test cases for simple code changes just to hit every piece of code and achieve 100% code coverage started to be the wrong approach for us. Therefore, we changed our approach and started to identify key areas of our code base that had to reach 100% code coverage. Non-essential areas, like once-touched code in application configuration or setup files, have been removed from our coverage testing. This does not mean that we did not have tests for all these files.</p>
+<p>As already brought up above, one good example has been our DAOs, which went insane, writing unit tests for DAO files because we just tested implementation and not functionality, as everything has been mocked. This resulted in a lot of work when we had to change something and did not protect us from bugs. After our pivotal decision, we deleted all unit tests and started to write proper component tests, testing our DAOs with a real database. With this setup, we test functionality and not implementation, which reduces the number of tests we have to maintain or adapt and improves our code quality.</p>
+<p>Additionally, we started to write a few integration tests, testing the whole service in total from an API perspective, including the connection to the database.</p>
+<p>This gave us the proper confidence to release in a continuous pipeline but kept us fast in developing because we did not need to write or adjust many unit tests for every line of code.</p>
+<h2 id="choose-important-areas-and-reach-100" tabindex="-1"><a class="header-anchor" href="#choose-important-areas-and-reach-100">Choose important areas and reach 100%</a></h2>
+<p>It is the better way to identify critical areas of your application and reach 100% code coverage in these areas. The rest of the application should be tested via component or even some integration tests to have a stable release pipeline.</p>
+<p>What makes parts of your application critical?</p>
+<p>The following questions can help identify important parts of your application:</p>
+<ol>
+<li>Is the code part of the business logic, or just glue code?</li>
+<li>Does the code change often as it is part of the business logic, or is it written once and stays for a long time?</li>
+<li>Can I test functionality with my unit tests, or do I only test the implementation? (DAO example)</li>
+</ol>
+<h2 id="conclusion" tabindex="-1"><a class="header-anchor" href="#conclusion">Conclusion</a></h2>
+<p>100% code coverage in the whole application can quickly slow you down, without any further benefits or safety, while implementing new functionality or refactoring existing code. Instead, you should continuously analyse your code base, and identify the important parts of your business logic being part of code coverage analysis.</p>
+<p>Drive for 100% coverage in these areas and rely on a proper testing strategy, including the testing pyramid, by haven many unit tests, many component tests, and some integration tests, testing the entire application at once.</p>
+<p>This allows you fast development cycles, where you are still failing fast in the significant, and often changed areas. It is important to understand, that deciding for parts not having 100% code coverage is not equal to having 0% code coverage in these areas!</p>
+
+
+        <em class="post-publish-date">Published 04 Aug 2023</em>
+
+    </article>
+
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "How Code Coverage can be useful",
+        "author": {
+            "@type": "Person",
+            "name": "Nikolas Rist"
+        },
+        "datePublished": "2023-08-04",
+        "dateModified": "2023-08-04"
+    }
+    </script>
+
+
+		</main>
+	</body>
+</html>
