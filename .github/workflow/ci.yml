@@ -1,39 +1,24 @@
-name: CI-CD Pipeline
+name: Build and Deploy
 on:
   push:
     branches:
       - main
-
-concurrency:
-  group: build-${{ github.ref }}
-  cancel-in-progress: true
-
+permissions:
+  contents: write
 jobs:
-  build:
-    name: Build Site
+  build-and-deploy:
+    concurrency: ci-${{ github.ref }} # Recommended if you intend to make multiple deployments in quick succession.
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
 
-      - name: Read .node-version
-        id: nodejs
-        run: echo ::set-output name=version::$(cat .node-version)
+      - name: Install and Build 🔧 # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+        run: |
+          npm ci
+          npm run build
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          node-version: ${{ steps.nodejs.outputs.version }}
-
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      - name: Install
-        run: npm ci
-
-      - name: Run build
-        run: npm run build
+          folder: public # The folder the action should deploy.
