@@ -9,7 +9,7 @@ tags:
   - culture
 ---
 
-This blog provides a short review of index creation in PostgreSQL.
+This blog provides a short overview of index creation in PostgreSQL and tries to give some insights what to take into consideration how to built it.
 
 The [CREATE INDEX](https://www.postgresql.org/docs/current/sql-createindex.html) documentation is the best starting point to understand how index creation works. Nevertheless, I tried to point out the most important information in this blog post. Therefore, I will not write down all possible parameters, as they can be looked up in the documentation easily.
 
