@@ -1,7 +1,7 @@
 ---
 date: 2024-04-12
-title: PostgreSQL Index Creation
-description: When to build indexes concurrently or and when not.
+title: PostgreSQL Index Creation - How it works
+description: Understand index creation in PostgreSQL, and how to decide how to build it.
 author: nikolas-rist
 templateEngineOverride: njk,md
 tags:
