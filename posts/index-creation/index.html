@@ -35,8 +35,7 @@
             <h1 class="post-title">PostgreSQL Index Creation</h1>
         </header>
 
-        <h1 id="postgre-sql-index-creation" tabindex="-1"><a class="header-anchor" href="#postgre-sql-index-creation">PostgreSQL Index Creation</a></h1>
-<p>This blog provides a short review of index creation in PostgreSQL.</p>
+        <p>This blog provides a short review of index creation in PostgreSQL.</p>
 <p>The <a href="https://www.postgresql.org/docs/current/sql-createindex.html">CREATE INDEX</a> documentation is the best starting point to understand how index creation works. Nevertheless, I tried to point out the most important information in this blog post. Therefore, I will not write down all possible parameters, as they can be looked up in the documentation easily.</p>
 <h2 id="index-types" tabindex="-1"><a class="header-anchor" href="#index-types">Index Types</a></h2>
 <p>PostgreSQL provides the following types: <code>B-tree</code>, <code>hash</code>, <code>GiST</code>, <code>SP-GiST</code>, <code>GIN</code>, and <code>BRIN</code></p>
@@ -45,27 +44,29 @@
 <p>Essential is the decision to build the index concurrently or not. But, to decide you need to know the differences of a non-concurrent and a concurrent build. Here we go:</p>
 <p>The default <code>CREATE INDEX</code> command builds the index non-concurrently. This means the table will be locked for <code>write</code>operations, whereas <code>read</code> operations are still possible. For a production system, this means that your application is unable to persist any data until the index build is finished. <code>CREATE INDEX CONCURRENTLY</code> in contrast, builds the index in a concurrent way, so <code>write</code> operations are still allowed, but at a cost.</p>
 <h3 id="how-it-works-in-detail" tabindex="-1"><a class="header-anchor" href="#how-it-works-in-detail">How it works in detail</a></h3>
-<p><code>CREATE INDEX</code> locks the table and can build the index with one table scan. It will not be interrupted or have to wait for any other operation, as long as there is no transaction running that collides with the <code>ExclusiveLock</code> acquired by <code>CREATE INDEX</code>.</p>
+<p><code>CREATE INDEX</code> locks the table and can build the index with one table scan. It will not be interrupted or have to wait for any other operation, as long as there is no transaction already running that collides with the <code>ExclusiveLock</code> acquired by <code>CREATE INDEX</code>.</p>
 <p><img src="/assets/img/index_creation.png" alt="index_creation"></p>
-<p><code>CREATE INDEX CONCURRENTLY</code> works differently; within a first transaction, the index itself is created and marked as <code>invalid</code>. After this, the build process needs two more transactions and table scans. Before it can start the second phase, it has to wait for any transaction potentially updating data. The third phase might be the most expensive one, as this transaction has to wait for any other transaction to finish, which contains a <code>snapshot</code>. Even after this, the index is only usable as soon as any transaction finishes, which predates the start of the index build.</p>
-<p>It is important to know, that if a concurrent index creation fails, the <code>invalid</code> index stays and will be updated already. So take care of removing <code>invalid</code> indexes or ensure to finally create them.</p>
+<p><code>CREATE INDEX CONCURRENTLY</code> works differently; within a first transaction, the index itself is created in the system catalogs and marked as <code>invalid</code> (phase 1). After this, the build process needs two more transactions with one table scan each. Before it can start the second phase (first table scan), it has to wait for any transaction potentially updating data. The third phase (second table scan) might be the most expensive one, as this transaction has to wait for any other transaction to finish, which contains a <code>snapshot</code>. This can even be an index built on an entirely different table. You might think that the index is done after the three phases; that's true, but the index is only usable as soon as any transaction finishes, which predates the start of the index build.</p>
+<p>It is important to know, that if a concurrent index creation fails, the <code>invalid</code> index stays and will be updated already. This has an impact on other operations and resource consumption. So take care of removing <code>invalid</code> indexes or ensure to finally create them.</p>
 <p><img src="/assets/img/concurrent_index.png" alt="concurrent_index"></p>
 <h3 id="decision-factors" tabindex="-1"><a class="header-anchor" href="#decision-factors">Decision factors</a></h3>
-<p>With this said, it heavily depends on your use case if you build the index concurrently or not. You need to take the following aspects into account to decide:</p>
+<p>Now you know, at a high level, how both approaches create indexes. Now the big question is, which should I use? As often in engineering, the answer is that it heavily depends on your use case if you build the index concurrently or not. You need to take the following aspects into account to decide:</p>
 <ol>
+<li>Main purpose of the table (read or write heavy)</li>
 <li>Table size</li>
 <li>Complexity of the index itself (single column vs. expression)</li>
-<li>Main purpose of the table (read or write heavy)</li>
 <li>How complex is your database and how easy is it to clean up broken state?</li>
 <li>Does the index creation block your release?</li>
 </ol>
-<p>For the last topic my current team and I have to decide which index creation we use. We are managing our database schemas with Liquibase migrations, including the index creations. This we do, as we have several instances of our services owning an own database. This is subject to change in the future, but as of today we have to take this into consideration. Therefore, the index creation is part of our release pipeline and long running index builds block following release until they are done.</p>
-<p>Additionally, to the situation of a blocked release pipeline, we have schema separation for our tenants, which makes the clean-up not easier. This is one of the downsides of the schema separation, but it would exceed the scope of this post to discuss, when to do schema separation and when have column based separation of tenants. Nevertheless, we ran into situations where the concurrent index creation failed and we manually had to clean the state of multiple schemas before we could trigger a new release.</p>
+<p>This list of questions/facts is sorted by my opinion of their importance. The first and most important question is: can we accept a possible <code>write lock</code> on the table we want to create the index on? Definitely, this depends on two and three, as this plays into account how long it takes. Unfortunately, I am unable to give a golden number when the size of the table is too big for a non-concurrent index creation. It is the combination of operations running against the table and its size.</p>
+<p>Point four and five should not be ignored, as this can have a big impact on when you run such an index creation and what is the impact on your current work.</p>
+<p>For us, most tables we created indexes for in the past have been big, which resulted in hours of index creation for some databases. Therefore, we give these questions some more weight to decide which index creation we use. Another fact giving this a higher weight is that we have multiple teams working on this monolithic service. We are managing our database schemas with Liquibase migrations, including index creations. This we do, as we have several instances of our services working on their own database. This is subject to change in the future, but as of today, we have to take this into consideration. Therefore, the index creation is part of our release pipeline, and long-running index builds block following releases until they are done.</p>
+<p>We have schema separation for our tenants, which makes the clean-up if concurrent index creation fails more complex. We ran into situations where concurrent index creation failed, and we manually had to clean the state of multiple schemas before we could trigger a new release. Nevertheless, most times, it is less painful than blocking a table against <code>write</code> operations for several hours.</p>
 <h2 id="summary" tabindex="-1"><a class="header-anchor" href="#summary">Summary</a></h2>
 <p>Concurrent index creation can be really slow. Therefore, it might be worth having a shorter time frame for being blocked with <code>write</code> operations and building the index non-concurrently. If you have a huge table that has a lot of <code>write</code> operations, you might accept the long-running index built while still being able to keep your system running. If you have a table with mostly <code>read</code> operations and occasional updates, you probably should go with the non-concurrent index build.</p>
 
 
-        <em class="post-publish-date">Published 04 Apr 2024</em>
+        <em class="post-publish-date">Published 12 Apr 2024</em>
 
     </article>
 
@@ -79,8 +80,8 @@
             "@type": "Person",
             "name": "Nikolas Rist"
         },
-        "datePublished": "2024-04-04",
-        "dateModified": "2024-04-04"
+        "datePublished": "2024-04-12",
+        "dateModified": "2024-04-12"
     }
     </script>
 
