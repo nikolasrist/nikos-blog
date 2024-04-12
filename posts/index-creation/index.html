@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<link rel="alternate" type="application/rss+xml" href="/rss.xml">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Welcome to my Blog. Here I write about dev topics.">
+		<title>PostgreSQL Index Creation</title>
+		<link rel="stylesheet" href="/css/style.css"/>
+		
+		<script type="text/javascript">
+			navigator
+				.serviceWorker
+				.getRegistrations()
+				.then((registrations) => {
+					if (!registrations && registrations.length === 0) {
+						return;
+					}
+					for (let registration of registrations) {
+						registration.unregister()
+					}
+				})
+		</script>
+	</head>
+	<body class="no-grid">
+		
+	<a href="/" class="link-button post-home-link">All Posts</a>
+
+		<main class="content">
+			
+    <article class="post-detail">
+
+        <header class="page-header length-optimal">
+            <h1 class="post-title">PostgreSQL Index Creation</h1>
+        </header>
+
+        <h1 id="postgre-sql-index-creation" tabindex="-1"><a class="header-anchor" href="#postgre-sql-index-creation">PostgreSQL Index Creation</a></h1>
+<p>This blog provides a short review of index creation in PostgreSQL.</p>
+<p>The <a href="https://www.postgresql.org/docs/current/sql-createindex.html">CREATE INDEX</a> documentation is the best starting point to understand how index creation works. Nevertheless, I tried to point out the most important information in this blog post. Therefore, I will not write down all possible parameters, as they can be looked up in the documentation easily.</p>
+<h2 id="index-types" tabindex="-1"><a class="header-anchor" href="#index-types">Index Types</a></h2>
+<p>PostgreSQL provides the following types: <code>B-tree</code>, <code>hash</code>, <code>GiST</code>, <code>SP-GiST</code>, <code>GIN</code>, and <code>BRIN</code></p>
+<p>The default index is <code>B-tree</code> and for most default use cases a very good choice. When you should use another index is not part of this post.</p>
+<h2 id="concurrent-option" tabindex="-1"><a class="header-anchor" href="#concurrent-option">Concurrent option</a></h2>
+<p>Essential is the decision to build the index concurrently or not. But, to decide you need to know the differences of a non-concurrent and a concurrent build. Here we go:</p>
+<p>The default <code>CREATE INDEX</code> command builds the index non-concurrently. This means the table will be locked for <code>write</code>operations, whereas <code>read</code> operations are still valid. For a production system, this means that your application is unable to persist any data until the index build is finished. <code>CREATE INDEX CONCURRENTLY</code> in contrast, builds the index in a concurrent way, so <code>write</code> operations are still allowed, but at a cost.</p>
+<h3 id="how-it-works-in-detail" tabindex="-1"><a class="header-anchor" href="#how-it-works-in-detail">How it works in detail</a></h3>
+<p><code>CREATE INDEX</code> locks the table and can build the index with one table scan. It will not be interrupted or have to wait for any other operation.</p>
+<p><img src="/assets/img/index_creation.png" alt="index_creation"></p>
+<p><code>CREATE INDEX CONCURRENTLY</code> works differently; within a first transaction, the index itself is created and marked as <code>invalid</code>. After this, the build process needs two more transactions and table scans. Before it can start the second phase, it has to wait for any transaction potentially updating data. The third phase might be the most expensive one, as this transaction has to wait for any other transaction to finish, which contains a <code>snapshot</code>. Even after this, the index is only usable as soon as any transaction finishes, which predates the start of the index build.</p>
+<p>It is important to know, that if a concurrent index creation fails, the <code>invalid</code> index stays and will be updated already. So take care of removing <code>invalid</code> indexes or ensure to finally create them.</p>
+<p><img src="/assets/img/concurrent_index.png" alt="concurrent_index"></p>
+<h3 id="decision-factors" tabindex="-1"><a class="header-anchor" href="#decision-factors">Decision factors</a></h3>
+<p>With this said, it heavily depends on your use case if you build the index concurrently or not. You need to take the following aspects into account to decide:</p>
+<ol>
+<li>
+<p>Table size</p>
+</li>
+<li>
+<p>Complexity of the index itself (single column vs. expression)</p>
+</li>
+<li>
+<p>Main purpose of the table (read or write heavy)</p>
+</li>
+</ol>
+<h2 id="summary" tabindex="-1"><a class="header-anchor" href="#summary">Summary</a></h2>
+<p>Concurrent index creation can be really slow and block your release pipeline if you do it within a migration. It might be worth having a shorter time frame for being blocked with <code>write</code> operations and building the index non-concurrently. If you have a huge table that has a lot of <code>write</code> operations, you might accept the long-running index built while still being able to keep your system running. If you have a table with mostly <code>read</code> operations and occasional updates, you probably should go with the non-concurrent index build.</p>
+
+
+        <em class="post-publish-date">Published 04 Apr 2024</em>
+
+    </article>
+
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "PostgreSQL Index Creation",
+        "author": {
+            "@type": "Person",
+            "name": "Nikolas Rist"
+        },
+        "datePublished": "2024-04-04",
+        "dateModified": "2024-04-04"
+    }
+    </script>
+
+
+		</main>
+	</body>
+</html>

@@ -10,6 +10,44 @@
     <name>Nikolas Rist</name>
     <email>nehranis@gmail.com</email>
   </author><entry>
+          <title>PostgreSQL Index Creation</title>
+          <link href="https://www.dev.nehranis.de/posts/index-creation/"/>
+          <updated>2024-04-04T00:00:00Z</updated>
+          <id>https://www.dev.nehranis.de/posts/index-creation/</id>
+          <content type="html">
+          &lt;h1 id=&quot;postgre-sql-index-creation&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/index-creation/#postgre-sql-index-creation&quot;&gt;PostgreSQL Index Creation&lt;/a&gt;&lt;/h1&gt;
+&lt;p&gt;This blog provides a short review of index creation in PostgreSQL.&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&quot;https://www.postgresql.org/docs/current/sql-createindex.html&quot;&gt;CREATE INDEX&lt;/a&gt; documentation is the best starting point to understand how index creation works. Nevertheless, I tried to point out the most important information in this blog post. Therefore, I will not write down all possible parameters, as they can be looked up in the documentation easily.&lt;/p&gt;
+&lt;h2 id=&quot;index-types&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/index-creation/#index-types&quot;&gt;Index Types&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;PostgreSQL provides the following types: &lt;code&gt;B-tree&lt;/code&gt;, &lt;code&gt;hash&lt;/code&gt;, &lt;code&gt;GiST&lt;/code&gt;, &lt;code&gt;SP-GiST&lt;/code&gt;, &lt;code&gt;GIN&lt;/code&gt;, and &lt;code&gt;BRIN&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;The default index is &lt;code&gt;B-tree&lt;/code&gt; and for most default use cases a very good choice. When you should use another index is not part of this post.&lt;/p&gt;
+&lt;h2 id=&quot;concurrent-option&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/index-creation/#concurrent-option&quot;&gt;Concurrent option&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Essential is the decision to build the index concurrently or not. But, to decide you need to know the differences of a non-concurrent and a concurrent build. Here we go:&lt;/p&gt;
+&lt;p&gt;The default &lt;code&gt;CREATE INDEX&lt;/code&gt; command builds the index non-concurrently. This means the table will be locked for &lt;code&gt;write&lt;/code&gt;operations, whereas &lt;code&gt;read&lt;/code&gt; operations are still valid. For a production system, this means that your application is unable to persist any data until the index build is finished. &lt;code&gt;CREATE INDEX CONCURRENTLY&lt;/code&gt; in contrast, builds the index in a concurrent way, so &lt;code&gt;write&lt;/code&gt; operations are still allowed, but at a cost.&lt;/p&gt;
+&lt;h3 id=&quot;how-it-works-in-detail&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/index-creation/#how-it-works-in-detail&quot;&gt;How it works in detail&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;CREATE INDEX&lt;/code&gt; locks the table and can build the index with one table scan. It will not be interrupted or have to wait for any other operation.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dev.nehranis.de/assets/img/index_creation.png&quot; alt=&quot;index_creation&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;CREATE INDEX CONCURRENTLY&lt;/code&gt; works differently; within a first transaction, the index itself is created and marked as &lt;code&gt;invalid&lt;/code&gt;. After this, the build process needs two more transactions and table scans. Before it can start the second phase, it has to wait for any transaction potentially updating data. The third phase might be the most expensive one, as this transaction has to wait for any other transaction to finish, which contains a &lt;code&gt;snapshot&lt;/code&gt;. Even after this, the index is only usable as soon as any transaction finishes, which predates the start of the index build.&lt;/p&gt;
+&lt;p&gt;It is important to know, that if a concurrent index creation fails, the &lt;code&gt;invalid&lt;/code&gt; index stays and will be updated already. So take care of removing &lt;code&gt;invalid&lt;/code&gt; indexes or ensure to finally create them.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dev.nehranis.de/assets/img/concurrent_index.png&quot; alt=&quot;concurrent_index&quot; /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;decision-factors&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/index-creation/#decision-factors&quot;&gt;Decision factors&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;With this said, it heavily depends on your use case if you build the index concurrently or not. You need to take the following aspects into account to decide:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Table size&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Complexity of the index itself (single column vs. expression)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Main purpose of the table (read or write heavy)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;summary&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/index-creation/#summary&quot;&gt;Summary&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Concurrent index creation can be really slow and block your release pipeline if you do it within a migration. It might be worth having a shorter time frame for being blocked with &lt;code&gt;write&lt;/code&gt; operations and building the index non-concurrently. If you have a huge table that has a lot of &lt;code&gt;write&lt;/code&gt; operations, you might accept the long-running index built while still being able to keep your system running. If you have a table with mostly &lt;code&gt;read&lt;/code&gt; operations and occasional updates, you probably should go with the non-concurrent index build.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9CPostgreSQL%20Index%20Creation%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
+          </content>
+        </entry><entry>
           <title>My way back from management to coding</title>
           <link href="https://www.dev.nehranis.de/posts/ic-to-em/"/>
           <updated>2024-04-04T00:00:00Z</updated>
