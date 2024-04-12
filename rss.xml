@@ -15,7 +15,7 @@
           <updated>2024-04-12T00:00:00Z</updated>
           <id>https://www.dev.nehranis.de/posts/index-creation/</id>
           <content type="html">
-          &lt;p&gt;This blog provides a short review of index creation in PostgreSQL.&lt;/p&gt;
+          &lt;p&gt;This blog provides a short overview of index creation in PostgreSQL and tries to give some insights what to take into consideration how to built it.&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&quot;https://www.postgresql.org/docs/current/sql-createindex.html&quot;&gt;CREATE INDEX&lt;/a&gt; documentation is the best starting point to understand how index creation works. Nevertheless, I tried to point out the most important information in this blog post. Therefore, I will not write down all possible parameters, as they can be looked up in the documentation easily.&lt;/p&gt;
 &lt;h2 id=&quot;index-types&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/index-creation/#index-types&quot;&gt;Index Types&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;PostgreSQL provides the following types: &lt;code&gt;B-tree&lt;/code&gt;, &lt;code&gt;hash&lt;/code&gt;, &lt;code&gt;GiST&lt;/code&gt;, &lt;code&gt;SP-GiST&lt;/code&gt;, &lt;code&gt;GIN&lt;/code&gt;, and &lt;code&gt;BRIN&lt;/code&gt;&lt;/p&gt;
