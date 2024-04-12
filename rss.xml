@@ -10,7 +10,7 @@
     <name>Nikolas Rist</name>
     <email>nehranis@gmail.com</email>
   </author><entry>
-          <title>PostgreSQL Index Creation</title>
+          <title>PostgreSQL Index Creation - How it works</title>
           <link href="https://www.dev.nehranis.de/posts/index-creation/"/>
           <updated>2024-04-12T00:00:00Z</updated>
           <id>https://www.dev.nehranis.de/posts/index-creation/</id>
@@ -44,7 +44,7 @@
 &lt;p&gt;We have schema separation for our tenants, which makes the clean-up if concurrent index creation fails more complex. We ran into situations where concurrent index creation failed, and we manually had to clean the state of multiple schemas before we could trigger a new release. Nevertheless, most times, it is less painful than blocking a table against &lt;code&gt;write&lt;/code&gt; operations for several hours.&lt;/p&gt;
 &lt;h2 id=&quot;summary&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/index-creation/#summary&quot;&gt;Summary&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Concurrent index creation can be really slow. Therefore, it might be worth having a shorter time frame for being blocked with &lt;code&gt;write&lt;/code&gt; operations and building the index non-concurrently. If you have a huge table that has a lot of &lt;code&gt;write&lt;/code&gt; operations, you might accept the long-running index built while still being able to keep your system running. If you have a table with mostly &lt;code&gt;read&lt;/code&gt; operations and occasional updates, you probably should go with the non-concurrent index build.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9CPostgreSQL%20Index%20Creation%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9CPostgreSQL%20Index%20Creation%20-%20How%20it%20works%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
           </content>
         </entry><entry>
           <title>My way back from management to coding</title>
