@@ -1,5 +1,5 @@
 ---
-date: 2024-03-03
+date: 2024-12-27
 title: Kotlin Fundamentals - Numbers
 description: Brief summary of Kotlin Integer and Float numbers.
 author: nikolas-rist
@@ -34,7 +34,7 @@ It is important to understand that in Kotlin every number type is an `Object`. T
 Java. Nevertheless they are compiled into a primitive Java type as long as they are not nullable. Nullable numbers in
 Kotlin are compiled into boxed Java Classes representations.
 
-```Kotlin
+```kotlin
 var myInt = 1 // compiled to the primitive integer value
 var myInt: Int? = null // compiled to a object wrapped Integer
 ```
@@ -46,7 +46,7 @@ In contrast to the four different number types for Integer numbers, Kotlin provi
 1. `Float` 32 Bits -> Significant Bits: 24, Exponent Bits: 8, decimal digits: 6-7
 2. `Double`64 Bits -> Signifcant Bits: 53, Exponent Bits: 11, decimal digits: 15-16
 
-```Kotlin
+```kotlin
 println(Float.MIN_VALUE) // 1.4E-45
 println(Float.MAX_VALUE) // 3.4028235e38
 
@@ -63,7 +63,7 @@ Kotlin goes with `double` as the default floating number, if the compiler infers
 It is important to know that Kotlin does not have implicit widening or conversion of numbers. Every number needs to be
 explicitly converted to be used with a different number type.
 
-```Kotlin
+```kotlin
 val i = 42
 val d = 42.0
 val equal = i == d // does not work as Int and Double can not be compared
