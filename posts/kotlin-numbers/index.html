@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<link rel="alternate" type="application/rss+xml" href="/rss.xml">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Welcome to my Blog. Here I write about dev topics.">
+		<title>Kotlin Fundamentals - Numbers</title>
+		<link rel="stylesheet" href="/css/style.css"/>
+		
+		<script type="text/javascript">
+			navigator
+				.serviceWorker
+				.getRegistrations()
+				.then((registrations) => {
+					if (!registrations && registrations.length === 0) {
+						return;
+					}
+					for (let registration of registrations) {
+						registration.unregister()
+					}
+				})
+		</script>
+	</head>
+	<body class="no-grid">
+		
+	<a href="/" class="link-button post-home-link">All Posts</a>
+
+		<main class="content">
+			
+    <article class="post-detail">
+
+        <header class="page-header length-optimal">
+            <h1 class="post-title">Kotlin Fundamentals - Numbers</h1>
+        </header>
+
+        <h2 id="introduction" tabindex="-1"><a class="header-anchor" href="#introduction">Introduction</a></h2>
+<p>Kotlin has several different data types for numbers. This blog post provides some basic information on how they look like and how they can be used. Additionally it discusses basic concepts which are new in Kotlin.</p>
+<h2 id="integer" tabindex="-1"><a class="header-anchor" href="#integer">Integer</a></h2>
+<p>The default types for Integers are signed. This means they have a range from negative to positive values.</p>
+<ol>
+<li>Byte (8 Bit) from -128 until 127</li>
+<li>Short (16 Bit) from -32768 until 32767</li>
+<li>Int (32 Bit) from -2,147,483,648 (-2^31) until 2,147,483,647 (2^31 - 1)</li>
+<li>Long (64 Bit) from -9,223,372,036,854,775,808 (-2^63) until 9,223,372,036,854,775,807 (2^63 - 1)</li>
+</ol>
+<p>If you initialise a variable without an explicit type, the compiler infers the type from the smallest range not exceeding <code>Int</code>. If it exceeds <code>Int</code> it is a <code>Long</code> value. This means that <code>val myNumber = 1</code> infers the type <code>Int</code> for <code>myNumber</code> even though it would fit into a <code>Byte</code>or <code>Short</code> type. As soon as you have a value bigger than int e.g. <code>val myNumber = 4000000000</code> it is with type <code>Long</code>.</p>
+<p>It is important to understand that in Kotlin every number type is an <code>Object</code>. There are no <code>primitive</code> types as in Java.<br>
+Nevertheless they are compiled into a primitive Java type as long as they are not nullable.<br>
+Nullable numbers in Kotlin are compiled into boxed Java Classes representations.</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">var</span> myInt <span class="token operator">=</span> <span class="token number">1</span> <span class="token comment">// compiled to the primitive integer value</span><br><span class="token keyword">var</span> myInt<span class="token operator">:</span> Int<span class="token operator">?</span> <span class="token operator">=</span> <span class="token keyword">null</span> <span class="token comment">// compiled to a object wrapped Integer</span></code></pre>
+<h2 id="float" tabindex="-1"><a class="header-anchor" href="#float">Float</a></h2>
+<p>In contrast to the four different number types for Integer numbers, Kotlin provides two for floating numbers.</p>
+<ol>
+<li><code>Float</code> 32 Bits -&gt; Significant Bits: 24, Exponent Bits: 8, decimal digits: 6-7</li>
+<li><code>Double</code>64 Bits -&gt; Signifcant Bits: 53, Exponent Bits: 11, decimal digits: 15-16</li>
+</ol>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token function">println</span><span class="token punctuation">(</span>Float<span class="token punctuation">.</span>MIN_VALUE<span class="token punctuation">)</span> <span class="token comment">// 1.4E-45</span><br><span class="token function">println</span><span class="token punctuation">(</span>Float<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">)</span> <span class="token comment">// 3.4028235e38</span><br><br><span class="token function">println</span><span class="token punctuation">(</span>Double<span class="token punctuation">.</span>MIN_VALUE<span class="token punctuation">)</span> <span class="token comment">// 4.9E-324</span><br><span class="token function">println</span><span class="token punctuation">(</span>Double<span class="token punctuation">.</span>MAX_VALUE<span class="token punctuation">)</span> <span class="token comment">// 1.7976931348623157E308</span></code></pre>
+<p>The E-Notation explained in short: The <code>e</code> stands for &quot;number times ten to the power of ...&quot;. So for example it is <code>3.4028235 times ten to the power of 38</code>. So you would shift the <code>.</code> for <code>38</code> positions to the right. In the example this would result in <code>340 282 350 000 000 000 000 000 000 000 000 000 000</code>.</p>
+<p>Kotlin goes with <code>double</code> as the default floating number, if the compiler infers the type.</p>
+<p>It is important to know that Kotlin does not have implicit widening or conversion of numbers.<br>
+Every number needs to be explicitly converted to be used with a different number type.</p>
+<pre class="language-kotlin"><code class="language-kotlin"><span class="token keyword">val</span> i <span class="token operator">=</span> <span class="token number">42</span><br><span class="token keyword">val</span> d <span class="token operator">=</span> <span class="token number">42.0</span><br><span class="token keyword">val</span> equal <span class="token operator">=</span> i <span class="token operator">==</span> d <span class="token comment">// does not work as Int and Double can not be compared</span><br><span class="token keyword">val</span> equalTwo <span class="token operator">=</span> i <span class="token operator">==</span> d<span class="token punctuation">.</span><span class="token function">toInt</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// would work as double is converted to Int.</span></code></pre>
+<h2 id="interesting-to-know" tabindex="-1"><a class="header-anchor" href="#interesting-to-know">Interesting to know</a></h2>
+<h3 id="jvm-representation" tabindex="-1"><a class="header-anchor" href="#jvm-representation">JVM representation</a></h3>
+<p>On the JVM platform numbers are stored in their primitive types. <code>Int -&gt; int</code> or <code>Double -&gt; double</code>. If you mark a number as nullable <code>Int?</code> it will be boxed in the Java Classes <code>Integer</code>, <code>Double</code> respectively.</p>
+<h3 id="bit-operations" tabindex="-1"><a class="header-anchor" href="#bit-operations">Bit operations</a></h3>
+<p>Bit operations e.g. <code>shl</code> or <code>shr</code> etc. See a full list in the <a href="https://kotlinlang.org/docs/numbers.html#bitwise-operations">docs</a>.</p>
+<h3 id="float-comparison" tabindex="-1"><a class="header-anchor" href="#float-comparison">Float comparison</a></h3>
+<p>If the operands are statically known as <code>Float</code> or <code>Double</code>, the operations follow the <a href="https://en.wikipedia.org/wiki/IEEE_754">IEE 754 Standard</a>.</p>
+<h2 id="conclusion" tabindex="-1"><a class="header-anchor" href="#conclusion">Conclusion</a></h2>
+<p>The Kotlin implementation for numbers is convenient to use, but in details complex. I tried to come up with an overview image of the different ranges of existing number types.</p>
+<p><img src="../../assets/img/kotlin_numbers.png" alt="Overview of Kotlin Number Types"></p>
+
+
+        <em class="post-publish-date">Published 27 Dec 2024</em>
+
+    </article>
+
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Kotlin Fundamentals - Numbers",
+        "author": {
+            "@type": "Person",
+            "name": "Nikolas Rist"
+        },
+        "datePublished": "2024-12-27",
+        "dateModified": "2024-12-27"
+    }
+    </script>
+
+
+		</main>
+	</body>
+</html>

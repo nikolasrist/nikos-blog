@@ -4,12 +4,57 @@
   <subtitle></subtitle>
   <link href="https://www.dev.nehranis.de/rss.xml" rel="self"/>
   <link href="https://www.dev.nehranis.de/"/>
-  <updated>2024-04-12T00:00:00Z</updated>
+  <updated>2024-12-27T00:00:00Z</updated>
   <id>https://www.dev.nehranis.de//</id>
   <author>
     <name>Nikolas Rist</name>
     <email>nehranis@gmail.com</email>
   </author><entry>
+          <title>Kotlin Fundamentals - Numbers</title>
+          <link href="https://www.dev.nehranis.de/posts/kotlin-numbers/"/>
+          <updated>2024-12-27T00:00:00Z</updated>
+          <id>https://www.dev.nehranis.de/posts/kotlin-numbers/</id>
+          <content type="html">
+          &lt;h2 id=&quot;introduction&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/kotlin-numbers/#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Kotlin has several different data types for numbers. This blog post provides some basic information on how they look like and how they can be used. Additionally it discusses basic concepts which are new in Kotlin.&lt;/p&gt;
+&lt;h2 id=&quot;integer&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/kotlin-numbers/#integer&quot;&gt;Integer&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The default types for Integers are signed. This means they have a range from negative to positive values.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Byte (8 Bit) from -128 until 127&lt;/li&gt;
+&lt;li&gt;Short (16 Bit) from -32768 until 32767&lt;/li&gt;
+&lt;li&gt;Int (32 Bit) from -2,147,483,648 (-2^31) until 2,147,483,647 (2^31 - 1)&lt;/li&gt;
+&lt;li&gt;Long (64 Bit) from -9,223,372,036,854,775,808 (-2^63) until 9,223,372,036,854,775,807 (2^63 - 1)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;If you initialise a variable without an explicit type, the compiler infers the type from the smallest range not exceeding &lt;code&gt;Int&lt;/code&gt;. If it exceeds &lt;code&gt;Int&lt;/code&gt; it is a &lt;code&gt;Long&lt;/code&gt; value. This means that &lt;code&gt;val myNumber = 1&lt;/code&gt; infers the type &lt;code&gt;Int&lt;/code&gt; for &lt;code&gt;myNumber&lt;/code&gt; even though it would fit into a &lt;code&gt;Byte&lt;/code&gt;or &lt;code&gt;Short&lt;/code&gt; type. As soon as you have a value bigger than int e.g. &lt;code&gt;val myNumber = 4000000000&lt;/code&gt; it is with type &lt;code&gt;Long&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;It is important to understand that in Kotlin every number type is an &lt;code&gt;Object&lt;/code&gt;. There are no &lt;code&gt;primitive&lt;/code&gt; types as in Java.&lt;br /&gt;
+Nevertheless they are compiled into a primitive Java type as long as they are not nullable.&lt;br /&gt;
+Nullable numbers in Kotlin are compiled into boxed Java Classes representations.&lt;/p&gt;
+&lt;pre class=&quot;language-kotlin&quot;&gt;&lt;code class=&quot;language-kotlin&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; myInt &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// compiled to the primitive integer value&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; myInt&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; Int&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// compiled to a object wrapped Integer&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;float&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/kotlin-numbers/#float&quot;&gt;Float&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;In contrast to the four different number types for Integer numbers, Kotlin provides two for floating numbers.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;Float&lt;/code&gt; 32 Bits -&amp;gt; Significant Bits: 24, Exponent Bits: 8, decimal digits: 6-7&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Double&lt;/code&gt;64 Bits -&amp;gt; Signifcant Bits: 53, Exponent Bits: 11, decimal digits: 15-16&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre class=&quot;language-kotlin&quot;&gt;&lt;code class=&quot;language-kotlin&quot;&gt;&lt;span class=&quot;token function&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Float&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;MIN_VALUE&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 1.4E-45&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token function&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Float&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;MAX_VALUE&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 3.4028235e38&lt;/span&gt;&lt;br /&gt;&lt;br /&gt;&lt;span class=&quot;token function&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Double&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;MIN_VALUE&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 4.9E-324&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token function&quot;&gt;println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Double&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;MAX_VALUE&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 1.7976931348623157E308&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The E-Notation explained in short: The &lt;code&gt;e&lt;/code&gt; stands for &amp;quot;number times ten to the power of ...&amp;quot;. So for example it is &lt;code&gt;3.4028235 times ten to the power of 38&lt;/code&gt;. So you would shift the &lt;code&gt;.&lt;/code&gt; for &lt;code&gt;38&lt;/code&gt; positions to the right. In the example this would result in &lt;code&gt;340 282 350 000 000 000 000 000 000 000 000 000 000&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Kotlin goes with &lt;code&gt;double&lt;/code&gt; as the default floating number, if the compiler infers the type.&lt;/p&gt;
+&lt;p&gt;It is important to know that Kotlin does not have implicit widening or conversion of numbers.&lt;br /&gt;
+Every number needs to be explicitly converted to be used with a different number type.&lt;/p&gt;
+&lt;pre class=&quot;language-kotlin&quot;&gt;&lt;code class=&quot;language-kotlin&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;val&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;42&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token keyword&quot;&gt;val&lt;/span&gt; d &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;42.0&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token keyword&quot;&gt;val&lt;/span&gt; equal &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; d &lt;span class=&quot;token comment&quot;&gt;// does not work as Int and Double can not be compared&lt;/span&gt;&lt;br /&gt;&lt;span class=&quot;token keyword&quot;&gt;val&lt;/span&gt; equalTwo &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; d&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toInt&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// would work as double is converted to Int.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;interesting-to-know&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/kotlin-numbers/#interesting-to-know&quot;&gt;Interesting to know&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;jvm-representation&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/kotlin-numbers/#jvm-representation&quot;&gt;JVM representation&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;On the JVM platform numbers are stored in their primitive types. &lt;code&gt;Int -&amp;gt; int&lt;/code&gt; or &lt;code&gt;Double -&amp;gt; double&lt;/code&gt;. If you mark a number as nullable &lt;code&gt;Int?&lt;/code&gt; it will be boxed in the Java Classes &lt;code&gt;Integer&lt;/code&gt;, &lt;code&gt;Double&lt;/code&gt; respectively.&lt;/p&gt;
+&lt;h3 id=&quot;bit-operations&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/kotlin-numbers/#bit-operations&quot;&gt;Bit operations&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Bit operations e.g. &lt;code&gt;shl&lt;/code&gt; or &lt;code&gt;shr&lt;/code&gt; etc. See a full list in the &lt;a href=&quot;https://kotlinlang.org/docs/numbers.html#bitwise-operations&quot;&gt;docs&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;float-comparison&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/kotlin-numbers/#float-comparison&quot;&gt;Float comparison&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;If the operands are statically known as &lt;code&gt;Float&lt;/code&gt; or &lt;code&gt;Double&lt;/code&gt;, the operations follow the &lt;a href=&quot;https://en.wikipedia.org/wiki/IEEE_754&quot;&gt;IEE 754 Standard&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;conclusion&quot; tabindex=&quot;-1&quot;&gt;&lt;a class=&quot;header-anchor&quot; href=&quot;https://www.dev.nehranis.de/posts/kotlin-numbers/#conclusion&quot;&gt;Conclusion&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;The Kotlin implementation for numbers is convenient to use, but in details complex. I tried to come up with an overview image of the different ranges of existing number types.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://www.dev.nehranis.de/assets/img/kotlin_numbers.png&quot; alt=&quot;Overview of Kotlin Number Types&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;mailto:michael@mharley.dev?subject=Re:%20%E2%80%9CKotlin%20Fundamentals%20-%20Numbers%E2%80%9D&quot;&gt;Reply via email&lt;/a&gt;&lt;/p&gt;
+          </content>
+        </entry><entry>
           <title>PostgreSQL Index Creation - How it works</title>
           <link href="https://www.dev.nehranis.de/posts/index-creation/"/>
           <updated>2024-04-12T00:00:00Z</updated>
