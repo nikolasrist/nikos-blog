@@ -3,14 +3,23 @@
 @use "sass:math";
 @use "sass:color";
 
-$color-base: hsl(0, 0%, 13%);
-$color-primary: hsl(221, 94%, 55%);
-$color-secondary: hsl(198, 100%, 33%);
+@import "../colors/nord.scss";
+
+//$color-base: hsl(0, 0%, 13%);
+//$color-primary: hsl(221, 94%, 55%);
+//$color-secondary: hsl(198, 100%, 33%);
+
+
+$color-base: $nord0;
+$color-text: $nord4;
+$color-primary: $nord8;
+$color-secondary: $nord7;
+
 
 $color-white: hsl(0, 0%, 100%);
-$color-gray: color.adjust($color-base, $lightness: 24%);
-$color-gray-border: color.adjust($color-base, $lightness: 77%);
-$color-gray-bg: color.adjust($color-base, $lightness: 79%);
+$color-gray: $nord8;
+$color-gray-border: $nord9;
+$color-gray-bg: $nord9;
 
 // see https://github.com/necolas/normalize.css/issues/665
 $typographic-font-family: -apple-system, "BlinkMacSystemFont", "Segoe UI", "Roboto", "Oxygen-Sans", "Ubuntu", "Cantarell", "Helvetica Neue", sans-serif;
@@ -21,9 +30,9 @@ $typographic-small-font-size: 14px;
 
 $typographic-base-line-height: 1.625;
 
-$typographic-base-font-color: $color-base;
+$typographic-base-font-color: $color-text;
 $typographic-link-font-color: $color-primary;
-$typographic-link-hover-focus-font-color: $color-primary;
+$typographic-link-hover-focus-font-color: $color-secondary;
 
 $typographic-leading: math.round(16 * math.div($typographic-root-font-size, 100) * $typographic-base-line-height);
 
