@@ -1,180 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<link rel="alternate" type="application/rss+xml" href="/rss.xml">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="Welcome to my Blog. Here I write about dev topics.">
-		<title>Nehranis - dev blog</title>
-		<link rel="stylesheet" href="/css/style.css"/>
-		
-		<script type="text/javascript">
-			navigator
-				.serviceWorker
-				.getRegistrations()
-				.then((registrations) => {
-					if (!registrations && registrations.length === 0) {
-						return;
-					}
-					for (let registration of registrations) {
-						registration.unregister()
-					}
-				})
-		</script>
-	</head>
-	<body class="">
-		
-			<div class="sidebar">
-    <header class="sidebar__author">
-        <img src="/assets/img/photo.jpg" class="sidebar__author-photo" alt="Picture of Nikolas Rist." width="75" height="75">
-        <span class="sidebar__author-title">
-            <a aria-current="page" class="black-link sidebar__author-title-link black-link" href="/">Nikolas Rist</a>
-        </span>
-        <span class="sidebar__author-subtitle">Full-Stack Developer</span>
-    </header>
-    <nav class="menu">
-    <ul class="menu__list">
-        <li class="menu__list-item">
-            <a href="/" class="black-link menu__list-item-link menu__list-item-link--active" aria-current="page">Posts</a>
-        </li>
-        <li class="menu__list-item">
-            <a href="/about" class="black-link menu__list-item-link " >About me</a>
-        </li>
-    </ul>
-</nav>
-    <ul class="links__list">
-    <li class="links__list-item">
-        <a href="https://github.com/nikolasrist" target="_blank" rel="noopener noreferrer">
-            <i class="icon-github icon--larger" aria-hidden="true"></i>
-            <span class="sr-only">GitHub</span></a>
-    </li>
-    <li class="links__list-item">
-        <a href="https://bsky.app/profile/nehranis.bsky.social" target="_blank" rel="noopener noreferrer">
-            <i class="icon-twitter" aria-hidden="true"></i>
-            <span class="sr-only">bluesky</span></a>
-    </li>
-    <li class="links__list-item">
-        <a href="mailto:nehranis@gmail.com">
-            <i class="icon-mail" aria-hidden="true"></i>
-            <span class="sr-only">Send me an email</span></a>
-    </li>
-    <li class="links__list-item">
-        <a href="https://www.linkedin.com/in/nikolas-rist-720796127">
-            <i class="icon-linkedin" aria-hidden="true"></i>
-            <span class="sr-only">LinkedIn</span></a>
-    </li>
-    <li class="links__list-item">
-        <a href="/rss.xml">
-            <i class="icon-rss" aria-hidden="true"></i>
-            <span class="sr-only">RSS feed</span></a>
-    </li>
-</ul>
-</div>
-		
-		<main class="content">
-			
-    <h1>Posts</h1>
-    <ul class="list-unstyled">
-        
-            <li class="post-item">
-    <a class="post-item__link" href="/posts/2024-12-27-kotlin-numbers/">
-        <time class="datetime color-grey" datetime="2024-12-27">
-            December 2024
-        </time>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <link rel="alternate" type="application/rss+xml" href="/rss.xml">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Welcome to my Blog. Here I write about dev topics.">
+        <title>Nehranis - dev blog</title>
+        <link rel="stylesheet" href="/css/style.css"/>
 
-        <h2>Kotlin Fundamentals - Numbers</h2>
+        <script type="text/javascript">
+            navigator
+                .serviceWorker
+                .getRegistrations()
+                .then((registrations) => {
+                    if (!registrations && registrations.length === 0) {
+                        return  ;
+                    }
+                    for (let registration of registrations) {
+                        registration.unregister()
+                    }
+                })
+        </script>
+    </head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Q6RW0W2JPC"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag()  {dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        <p class="post-item__description">Brief summary of Kotlin Integer and Float numbers.</p>
-    </a>
-</li>
-        
-            <li class="post-item">
-    <a class="post-item__link" href="/posts/2024-04-12-index-creation/">
-        <time class="datetime color-grey" datetime="2024-04-12">
-            April 2024
-        </time>
+        gtag('config', 'G-Q6RW0W2JPC');
+    </script>
+    <body class="">
 
-        <h2>PostgreSQL Index Creation - How it works</h2>
+        <div class="sidebar">
+            <header class="sidebar__author">
+                <img src="/assets/img/photo.jpg" class="sidebar__author-photo" alt="Picture of Nikolas Rist." width="75" height="75">
+                <span class="sidebar__author-title">
+                    <a aria-current="page" class="black-link sidebar__author-title-link black-link" href="/">Nikolas Rist</a>
+                </span>
+                <span class="sidebar__author-subtitle">Full-Stack Developer</span>
+            </header>
+            <nav class="menu">
+                <ul class="menu__list">
+                    <li class="menu__list-item">
+                        <a href="/" class="black-link menu__list-item-link menu__list-item-link--active" aria-current="page">Posts</a>
+                    </li>
+                    <li class="menu__list-item">
+                        <a href="/about" class="black-link menu__list-item-link ">About me</a>
+                    </li>
+                </ul>
+            </nav>
+            <ul class="links__list">
+                <li class="links__list-item">
+                    <a href="https://github.com/nikolasrist" target="_blank" rel="noopener noreferrer">
+                        <i class="icon-github icon--larger" aria-hidden="true"></i>
+                        <span class="sr-only">GitHub</span>
 
-        <p class="post-item__description">Understand index creation in PostgreSQL, and how to decide how to build it.</p>
-    </a>
-</li>
-        
-            <li class="post-item">
-    <a class="post-item__link" href="/posts/2024-04-09-ic-to-em/">
-        <time class="datetime color-grey" datetime="2024-04-04">
-            April 2024
-        </time>
 
-        <h2>My way back from management to coding</h2>
+                    </a>
+                </li>
+                <li class="links__list-item">
+                    <a href="https://bsky.app/profile/nehranis.bsky.social" target="_blank" rel="noopener noreferrer">
+                        <i class="icon-twitter" aria-hidden="true"></i>
+                        <span class="sr-only">bluesky</span>
 
-        <p class="post-item__description">Transitioning from Engineering Manager to Developer - My story about a year as an Engineering Manager and why I stepped back</p>
-    </a>
-</li>
-        
-            <li class="post-item">
-    <a class="post-item__link" href="/posts/2023-08-04-code-coverage/">
-        <time class="datetime color-grey" datetime="2023-08-04">
-            August 2023
-        </time>
 
-        <h2>How Code Coverage can be useful</h2>
+                    </a>
+                </li>
+                <li class="links__list-item">
+                    <a href="mailto:nehranis@gmail.com">
+                        <i class="icon-mail" aria-hidden="true"></i>
+                        <span class="sr-only">Send me an email</span>
 
-        <p class="post-item__description">Brief discussion about how to use code coverage to achieve more reliable services.</p>
-    </a>
-</li>
-        
-            <li class="post-item">
-    <a class="post-item__link" href="/posts/2023-04-20-em-90-days/">
-        <time class="datetime color-grey" datetime="2023-04-20">
-            April 2023
-        </time>
 
-        <h2>90 days as Engineering Manager</h2>
+                    </a>
+                </li>
+                <li class="links__list-item">
+                    <a href="https://www.linkedin.com/in/nikolas-rist-720796127">
+                        <i class="icon-linkedin" aria-hidden="true"></i>
+                        <span class="sr-only">LinkedIn</span>
 
-        <p class="post-item__description">From a Developer to Manager - A retrospective on my first 90 days</p>
-    </a>
-</li>
-        
-            <li class="post-item">
-    <a class="post-item__link" href="/posts/2022-08-09-microservice-testing/">
-        <time class="datetime color-grey" datetime="2022-08-09">
-            August 2022
-        </time>
 
-        <h2>Microservice testing series</h2>
+                    </a>
+                </li>
+                <li class="links__list-item">
+                    <a href="/rss.xml">
+                        <i class="icon-rss" aria-hidden="true"></i>
+                        <span class="sr-only">RSS feed</span>
 
-        <p class="post-item__description">This is an article series about the different parts of a common microservice testing strategy.</p>
-    </a>
-</li>
-        
-            <li class="post-item">
-    <a class="post-item__link" href="/posts/2022-07-27-knex-promise-resolution-decoded/">
-        <time class="datetime color-grey" datetime="2022-07-29">
-            July 2022
-        </time>
 
-        <h2>Knex.js promise resolution decoded</h2>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
-        <p class="post-item__description">This article explains some details on the Knex.js QueryBuilder interface and their impacts.</p>
-    </a>
-</li>
-        
-            <li class="post-item">
-    <a class="post-item__link" href="/posts/2022-07-21-introduction/">
-        <time class="datetime color-grey" datetime="2022-07-21">
-            July 2022
-        </time>
+        <main class="content">
 
-        <h2>Introducing my new blog</h2>
+            <h1>Posts</h1>
+            <ul class="list-unstyled">
 
-        <p class="post-item__description">Introduction to my new website.</p>
-    </a>
-</li>
-        
-    </ul>
+                <li class="post-item">
+                    <a class="post-item__link" href="/posts/2024-12-27-kotlin-numbers/">
+                        <time class="datetime color-grey" datetime="2024-12-27">
+                            December 2024
+                        </time>
 
-		</main>
-	</body>
+                        <h2>Kotlin Fundamentals - Numbers</h2>
+
+                        <p class="post-item__description">Brief summary of Kotlin Integer and Float numbers.</p>
+                    </a>
+                </li>
+
+                <li class="post-item">
+                    <a class="post-item__link" href="/posts/2024-04-12-index-creation/">
+                        <time class="datetime color-grey" datetime="2024-04-12">
+                            April 2024
+                        </time>
+
+                        <h2>PostgreSQL Index Creation - How it works</h2>
+
+                        <p class="post-item__description">Understand index creation in PostgreSQL, and how to decide how to build it.</p>
+                    </a>
+                </li>
+
+                <li class="post-item">
+                    <a class="post-item__link" href="/posts/2024-04-09-ic-to-em/">
+                        <time class="datetime color-grey" datetime="2024-04-04">
+                            April 2024
+                        </time>
+
+                        <h2>My way back from management to coding</h2>
+
+                        <p class="post-item__description">Transitioning from Engineering Manager to Developer - My story about a year as an Engineering Manager and why I stepped back</p>
+                    </a>
+                </li>
+
+                <li class="post-item">
+                    <a class="post-item__link" href="/posts/2023-08-04-code-coverage/">
+                        <time class="datetime color-grey" datetime="2023-08-04">
+                            August 2023
+                        </time>
+
+                        <h2>How Code Coverage can be useful</h2>
+
+                        <p class="post-item__description">Brief discussion about how to use code coverage to achieve more reliable services.</p>
+                    </a>
+                </li>
+
+                <li class="post-item">
+                    <a class="post-item__link" href="/posts/2023-04-20-em-90-days/">
+                        <time class="datetime color-grey" datetime="2023-04-20">
+                            April 2023
+                        </time>
+
+                        <h2>90 days as Engineering Manager</h2>
+
+                        <p class="post-item__description">From a Developer to Manager - A retrospective on my first 90 days</p>
+                    </a>
+                </li>
+
+                <li class="post-item">
+                    <a class="post-item__link" href="/posts/2022-08-09-microservice-testing/">
+                        <time class="datetime color-grey" datetime="2022-08-09">
+                            August 2022
+                        </time>
+
+                        <h2>Microservice testing series</h2>
+
+                        <p class="post-item__description">This is an article series about the different parts of a common microservice testing strategy.</p>
+                    </a>
+                </li>
+
+                <li class="post-item">
+                    <a class="post-item__link" href="/posts/2022-07-27-knex-promise-resolution-decoded/">
+                        <time class="datetime color-grey" datetime="2022-07-29">
+                            July 2022
+                        </time>
+
+                        <h2>Knex.js promise resolution decoded</h2>
+
+                        <p class="post-item__description">This article explains some details on the Knex.js QueryBuilder interface and their impacts.</p>
+                    </a>
+                </li>
+
+                <li class="post-item">
+                    <a class="post-item__link" href="/posts/2022-07-21-introduction/">
+                        <time class="datetime color-grey" datetime="2022-07-21">
+                            July 2022
+                        </time>
+
+                        <h2>Introducing my new blog</h2>
+
+                        <p class="post-item__description">Introduction to my new website.</p>
+                    </a>
+                </li>
+
+            </ul>
+
+        </main>
+    </body>
 </html>
